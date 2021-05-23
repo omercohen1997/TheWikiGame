@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"משחק הויקיפדיה "</string>
+    <string name="alert_external_link">ניסית לגשת ללינק חיצוני</string>
+    <string name="button_ok">אוקיי</string>
+</resources>

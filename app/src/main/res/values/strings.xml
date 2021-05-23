@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">TheWikiGame</string>
+    <string name="app_name">The Wiki Game</string>
+
+
+    <!--    Buttons-->
+    <string name="button_ok">OK</string>
+
+
+    <!--    Alerts-->
+    <string name="alert_external_link">You tried to reach an external link.</string>
 </resources>
