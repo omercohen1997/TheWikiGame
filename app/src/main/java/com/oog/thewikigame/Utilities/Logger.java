@@ -5,12 +5,12 @@ import android.util.Log;
 
 public class Logger {
 
-    public static void log(LogTag type,String ...msg){
+    public static void log(LogTag tag, String ...messages){
         StringBuilder sb=new StringBuilder();
-        for(String i: msg){
+        for(String i: messages){
             sb.append(i).append(" ");
         }
-        Log.d(type.toString(), sb.toString());
+        Log.d(tag.toString(), sb.toString());
     }
 
 }

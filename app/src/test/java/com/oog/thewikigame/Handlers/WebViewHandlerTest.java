@@ -8,6 +8,10 @@ public class WebViewHandlerTest {
     @Test
     public void constructURLTest(){
         //TODO: document and give titles to each array.
+
+        Assert.assertEquals("https://en.m.wikipedia.org/wiki/Goku",
+                WebViewHandler.constructURL("Goku"));
+
         Assert.assertEquals("https://en.m.wikipedia.org/wiki/Goku",
                 WebViewHandler.constructURL("Goku", WebViewHandler.Language.ENGLISH));
 
@@ -19,5 +23,6 @@ public class WebViewHandlerTest {
 
         Assert.assertEquals("https://en.m.wikipedia.org/wiki/%s",
                 WebViewHandler.constructURL("%s", WebViewHandler.Language.ENGLISH));
+
     }
 }

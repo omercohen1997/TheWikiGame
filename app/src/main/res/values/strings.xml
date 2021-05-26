@@ -7,5 +7,5 @@
 
 
     <!--    Alerts-->
-    <string name="alert_external_link">You tried to reach an external link.</string>
+    <string name="alert_invalid_link">You tried to reach an invalid link.</string>
 </resources>

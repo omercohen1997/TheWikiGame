@@ -17,9 +17,6 @@ public class WikipediaWebsiteFragment extends Fragment {
 
     private WebViewHandler webViewHandler;
 
-    public WikipediaWebsiteFragment() {
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +26,10 @@ public class WikipediaWebsiteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragmentView =inflater.inflate(R.layout.fragment_wikipedia_website, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_wikipedia_website, container, false);
         WebView webView = fragmentView.findViewById(R.id.wikipedia_website_webview_id);
-        webViewHandler= new WebViewHandler(webView);
-        webViewHandler.loadArticle("Goku");
+        webViewHandler = new WebViewHandler(webView);
+        webViewHandler.loadArticle("United_States");
         return fragmentView;
     }
 }
