@@ -13,6 +13,72 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button_ABOUT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About"
+        android:onClick="onClick"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="595dp" />
+
+    <Button
+        android:id="@+id/button_PLAY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        android:onClick="onClick"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="475dp" />
+
+    <Button
+        android:id="@+id/button_GAMERECORDS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Game Records"
+        android:onClick="onClick"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="514dp" />
+
+    <Button
+        android:id="@+id/button_SETTINGS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:onClick="onClick"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="555dp" />
+
+    <TextView
+        android:id="@+id/textView_THE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The"
+        android:textSize="86dp"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="36dp" />
+
+    <TextView
+        android:id="@+id/textView_GAME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game"
+        android:textSize="86dp"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="257dp" />
+
+    <TextView
+        android:id="@+id/textView_WIKI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wiki"
+        android:textSize="86dp"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="159dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
