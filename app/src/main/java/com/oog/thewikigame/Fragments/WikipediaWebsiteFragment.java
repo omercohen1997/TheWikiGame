@@ -28,7 +28,11 @@ public class WikipediaWebsiteFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragmentView = inflater.inflate(R.layout.fragment_wikipedia_website, container, false);
         WebView webView = fragmentView.findViewById(R.id.wikipedia_website_webview_id);
-        webViewHandler = new WebViewHandler(webView);
+        webViewHandler = new WebViewHandler(webView) {
+            @Override
+            public void onNextArticle(String article) {
+            }
+        };
         webViewHandler.loadArticle("United_States");
         return fragmentView;
     }
