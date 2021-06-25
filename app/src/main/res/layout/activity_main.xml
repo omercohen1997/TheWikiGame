@@ -1,84 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity">
+    tools:context=".activities.MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_fragment_wikipedia_website_id"
-        android:name="com.oog.thewikigame.Fragments.WikipediaWebsiteFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_title_layout_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchorGravity="top"
+        android:layout_gravity="top"
+        >
+
+        <TextView
+            android:id="@+id/main_text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_title"
+            android:textSize="86sp"
+            app:layout_anchorGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_buttons_layout_id"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content"
+        >
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_button_play_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_play"
+        android:onClick="onClick"
+        android:layout_margin="8dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/button_ABOUT"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_button_records_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="About"
+        android:text="@string/button_records"
         android:onClick="onClick"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="595dp" />
-
-    <Button
-        android:id="@+id/button_PLAY"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/main_button_play_id"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_button_about_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Play"
+        android:text="@string/button_about"
         android:onClick="onClick"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="475dp" />
-
-    <Button
-        android:id="@+id/button_GAMERECORDS"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/main_button_settings_id"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_button_settings_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Game Records"
+        android:text="@string/button_settings"
         android:onClick="onClick"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="514dp" />
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/main_button_records_id"
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/button_SETTINGS"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:onClick="onClick"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="555dp" />
 
-    <TextView
-        android:id="@+id/textView_THE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="The"
-        android:textSize="86dp"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="36dp" />
-
-    <TextView
-        android:id="@+id/textView_GAME"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Game"
-        android:textSize="86dp"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="257dp" />
-
-    <TextView
-        android:id="@+id/textView_WIKI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wiki"
-        android:textSize="86dp"
-        tools:layout_editor_absoluteX="124dp"
-        tools:layout_editor_absoluteY="159dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

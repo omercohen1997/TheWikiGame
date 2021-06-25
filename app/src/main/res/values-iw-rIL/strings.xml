@@ -3,4 +3,11 @@
     <string name="app_name">"משחק הויקיפדיה "</string>
     <string name="alert_invalid_link">ניסית לגשת ללינק לא חוקי.</string>
     <string name="button_ok">אוקיי</string>
+    <string name="button_play">שחק/י</string>
+    <string name="button_records">הסטוריית משחקים</string>
+    <string name="button_about">אודות</string>
+    <string name="button_settings">הגדרות</string>
+    <string name="text_title">משחק הויקיפדיה</string>
+    <string name="settings_appbar_title">הגדרות</string>
+    <string name="button_reset_all_data">אפס את כל המידע</string>
 </resources>

@@ -1,15 +1,14 @@
-package com.oog.thewikigame.Activities;
+package com.oog.thewikigame.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.oog.thewikigame.R;
-import com.oog.thewikigame.Utilities.LogTag;
-import com.oog.thewikigame.Utilities.Logger;
+import com.oog.thewikigame.utilities.LogTag;
+import com.oog.thewikigame.utilities.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,16 +24,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
 
         switch (view.getId()){
-            case R.id.button_PLAY:
+            case R.id.main_button_play_id:
                 intent = new Intent(this, MainActivity.class);
                 break;
-            case R.id.button_GAMERECORDS:
+            case R.id.main_button_records_id:
                 intent = new Intent(this, MainActivity.class);
                 break;
-            case R.id.button_SETTINGS:
-                intent = new Intent(this, MainActivity.class);
+            case R.id.main_button_settings_id:
+                intent = new Intent(this, SettingsActivity.class);
                 break;
-            case R.id.button_ABOUT:
+            case R.id.main_button_about_id:
                 intent = new Intent(this, MainActivity.class);
                 break;
             default:

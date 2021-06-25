@@ -1,11 +1,19 @@
 <resources>
     <string name="app_name">The Wiki Game</string>
 
-
     <!--    Buttons-->
     <string name="button_ok">OK</string>
-
+    <string name="button_play">Play</string>
+    <string name="button_records">Game Records</string>
+    <string name="button_about">About</string>
+    <string name="button_settings">Settings</string>
 
     <!--    Alerts-->
     <string name="alert_invalid_link">You tried to reach an invalid link.</string>
+
+    <!--    Texts-->
+    <string name="text_title">The Wiki Game</string>
+    <string name="settings_appbar_title">Settings</string>
+    <string name="button_reset_all_data">Reset all data</string>
+
 </resources>
