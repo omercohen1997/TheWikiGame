@@ -1,83 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_title_layout_id"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_anchorGravity="top"
-        android:layout_gravity="top"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activities.MainActivity">
 
         <TextView
-            android:id="@+id/main_text_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/main_text_title_id"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="@string/text_title"
             android:textSize="86sp"
-            app:layout_anchorGravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_anchorGravity="center" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_buttons_layout_id"
-        android:layout_width="match_parent"
-        android:layout_gravity="bottom"
-        android:layout_height="wrap_content"
-        >
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/main_button_play_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_play"
-        android:onClick="onClick"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/main_button_records_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_records"
-        android:onClick="onClick"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/main_button_play_id"
-        />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/main_button_about_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_about"
-        android:onClick="onClick"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/main_button_settings_id"
-        />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/main_button_settings_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_settings"
-        android:onClick="onClick"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/main_button_records_id"
-        />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/main_layout_buttons_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/main_button_play_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_button_play"
+                app:icon="@drawable/ic_baseline_videogame_asset_24"
+                app:iconGravity="textStart" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/main_button_records_id"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_button_records"
+                app:icon="@drawable/ic_baseline_bar_chart_24"
+                app:iconGravity="textStart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/main_button_settings_id"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_settings"
+                app:icon="@drawable/ic_baseline_settings_24"
+                app:iconGravity="textStart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/main_button_about_id"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_button_about"
+                app:icon="@drawable/ic_baseline_info_24"
+                app:iconGravity="textStart" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:text="@string/text_version"
+            android:padding="8dp"
+            />
+    </LinearLayout>
+</layout>
