@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
 
-        binding.mainButtonPlayId.setOnClickListener(v -> startActivityIntent(PlayActivity.class));
+        binding.mainButtonPlayId.setOnClickListener(v -> startActivityIntent(GameConfigActivity.class));
         binding.mainButtonRecordsId.setOnClickListener(v -> startActivityIntent(GameRecordsActivity.class));
         binding.mainButtonSettingsId.setOnClickListener(v -> startActivityIntent(SettingsActivity.class));
         binding.mainButtonAboutId.setOnClickListener(v -> startActivityIntent(AboutActivity.class));

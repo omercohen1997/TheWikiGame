@@ -13,15 +13,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:baselineAligned="true"
-        android:minHeight="64dp">
+        android:minHeight="64dp"
+        android:orientation="horizontal">
 
-<!--        Two TextViews in a LinearLayout-->
+        <!--        Two TextViews in a LinearLayout-->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
 
@@ -50,8 +50,6 @@
 
         <include
             layout="@layout/material_icon_button_flat"
-            app:icon="@{twoLineIconButtonModel.icon}"
-            app:onClickListener="@{()->twoLineIconButtonModel.onClickIcon()}"
-            />
+            app:iconButtonModel="@{twoLineIconButtonModel.iconButtonModel}" />
     </LinearLayout>
 </layout>

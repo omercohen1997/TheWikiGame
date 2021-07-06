@@ -2,40 +2,53 @@ package com.oog.thewikigame.models;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.Observable;
 
 import com.oog.thewikigame.BR;
 
-abstract public class TwoLineIconButtonModel extends TwoLineModel  {
+public class TwoLineIconButtonModel extends TwoLineModel {
 
+
+    private IconButtonModel iconButtonModel;
+
+
+    public TwoLineIconButtonModel(String primaryTitle, String secondaryTitle, IconButtonModel iconButtonModel) {
+        super(primaryTitle, secondaryTitle);
+        initIconButtonModel(iconButtonModel);
+    }
+
+    public TwoLineIconButtonModel(Context context, @StringRes int primaryTitleRes, @StringRes int secondaryTitleRes, IconButtonModel iconButtonModel) {
+        super(context, primaryTitleRes, secondaryTitleRes);
+        initIconButtonModel(iconButtonModel);
+    }
 
 
     @Bindable
-    private Drawable icon;
-
-
-    public TwoLineIconButtonModel(String primaryTitle, String secondaryTitle,Drawable icon) {
-        super(primaryTitle, secondaryTitle);
-        setIcon(icon);
+    public IconButtonModel getIconButtonModel() {
+        return iconButtonModel;
     }
 
-    public TwoLineIconButtonModel(Context context, @StringRes int primaryTitleRes, @StringRes int secondaryTitleRes, @DrawableRes int iconRes){
-        super(context,primaryTitleRes,secondaryTitleRes);
-        setIcon(ResourcesCompat.getDrawable(context.getResources(),iconRes,null));
-    }
-    public Drawable getIcon() {
-        return icon;
+    public void setIconButtonModel(IconButtonModel iconButtonModel) {
+        this.iconButtonModel = iconButtonModel;
+        notifyPropertyChanged(BR.iconButtonModel);
     }
 
-    public void setIcon(Drawable icon) {
-        this.icon = icon;
-        notifyPropertyChanged(BR.icon);
+
+    private void initIconButtonModel(IconButtonModel iconButtonModel) {
+        setIconButtonModel(iconButtonModel);
+        iconButtonModel.addOnPropertyChangedCallback(new OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                notifyPropertyChanged(BR.iconButtonModel);
+            }
+        });
     }
 
-    abstract public void onClickIcon();
 }

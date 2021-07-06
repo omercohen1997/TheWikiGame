@@ -15,9 +15,8 @@
         android:theme="@style/Theme.TheWikiGame">
         <activity android:name=".activities.AboutActivity"/>
         <activity android:name=".activities.GameRecordsActivity" />
-        <activity android:name=".activities.PlayActivity" />
+        <activity android:name=".activities.GameConfigActivity" />
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.PlayMenuActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

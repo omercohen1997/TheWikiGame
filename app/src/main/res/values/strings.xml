@@ -25,6 +25,9 @@
     <string name="settings_sounds_description">Toggle sounds on/off</string>
     <string name="settings_text_darkTheme">Apply Dark Theme</string>
     <string name="settings_text_darkTheme_description">Sets the app to dark mode if switched on</string>
+    <string name="text_game_configuration">Game Configuration</string>
+    <string name="game_config_text_start_article">Start Article</string>
+    <string name="text_loading">Loading...</string>
 
 
 </resources>
