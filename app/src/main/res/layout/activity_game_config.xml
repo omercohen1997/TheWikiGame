@@ -4,12 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="startArticleString"
             type="String" />
+
         <variable
             name="startArticleIconButtonModel"
             type="com.oog.thewikigame.models.IconButtonModel" />
+
+        <variable
+            name="timeLimitTwoLineSwitchModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
 
     </data>
 
@@ -75,21 +81,92 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{startArticleString}"
-                                android:enabled="false" />
+                                android:enabled="false"
+                                android:text="@{startArticleString}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <include layout="@layout/material_icon_button_flat"
-                            app:iconButtonModel="@{startArticleIconButtonModel}"
-                            />
+                        <include
+                            layout="@layout/material_icon_button_flat"
+                            app:iconButtonModel="@{startArticleIconButtonModel}" />
 
                     </LinearLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="@string/game_config_text_end_article"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/game_config_text_input_end_article_id"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            app:endIconDrawable="@drawable/ic_baseline_preview_24"
+                            app:endIconMode="custom">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:text="@{startArticleString}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <include
+                            layout="@layout/material_icon_button_flat"
+                            app:iconButtonModel="@{startArticleIconButtonModel}" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--                Configuration Card-->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardElevation="2dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include
+                            layout="@layout/list_item_two_line_switch"
+                            app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                        <include
+                            layout="@layout/list_item_two_line_switch"
+                            app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                        <include
+                            layout="@layout/list_item_two_line_switch"
+                            app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                        <include
+                            layout="@layout/list_item_two_line_switch"
+                            app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="I Work"/>
+                    android:text="I Work" />
 
             </LinearLayout>
 

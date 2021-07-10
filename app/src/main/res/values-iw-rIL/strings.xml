@@ -16,10 +16,11 @@
     <string name="settings_text_language">שפה</string>
     <string name="settings_text_language_description">כרגע מוגדרת כעברית</string>
     <string name="settings_text_sounds">צלילים</string>
-    <string name="settings_sounds_description">מיתוג צליל פועל/כבוי</string>
-    <string name="settings_text_darkTheme">הפעל מצב חשוך</string>
-    <string name="settings_text_darkTheme_description">מגדיר את האפליקציה כמצב חשוב כאשר מופעל</string>
+    <string name="settings_text_sounds_description">מיתוג צליל פועל/כבוי</string>
+    <string name="settings_text_dark_theme">הפעל מצב חשוך</string>
+    <string name="settings_text_dark_theme_description">מגדיר את האפליקציה כמצב חשוב כאשר מופעל</string>
     <string name="text_game_configuration">הגדרות משחק</string>
     <string name="game_config_text_start_article">מאמר התחלתי</string>
-    <string name="text_loading">טוען...</string>
+    <string name="text_loading">טוען…</string>
+    <string name="game_config_text_end_article">מאמר סיום</string>
 </resources>

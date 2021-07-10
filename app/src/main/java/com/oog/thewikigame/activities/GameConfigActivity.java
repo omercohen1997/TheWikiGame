@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.oog.thewikigame.R;
 import com.oog.thewikigame.databinding.ActivityGameConfigBinding;
 import com.oog.thewikigame.models.IconButtonModel;
+import com.oog.thewikigame.models.TwoLineSwitchModel;
 import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 
@@ -48,5 +49,14 @@ public class GameConfigActivity extends AppCompatActivity {
                 }
             });
         }));
+
+
+        binding.setTimeLimitTwoLineSwitchModel(new TwoLineSwitchModel("Time Limit","This will set a time limit to finish the game.") {
+            @Override
+            public void onToggle(boolean checked) {
+                //TODO: Add time limit functionality.
+            }
+        });
+
     }
 }

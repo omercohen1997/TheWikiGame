@@ -1,11 +1,9 @@
 package com.oog.thewikigame.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -64,15 +62,15 @@ public class SettingsActivity extends AppCompatActivity {
 
         TwoLineSwitchModel soundsModel = new TwoLineSwitchModel(this,
                 R.string.settings_text_sounds,
-                R.string.settings_sounds_description) {
+                R.string.settings_text_sounds_description) {
             @Override
             public void onToggle(boolean checked) {
                 Logger.log(LogTag.SETTINGS_ACTIVITY, "Toggled sounds", checked ? "on" : "off");
             }
         };
         TwoLineSwitchModel darkThemeModel = new TwoLineSwitchModel(this,
-                R.string.settings_text_darkTheme,
-                R.string.settings_text_darkTheme_description) {
+                R.string.settings_text_dark_theme,
+                R.string.settings_text_dark_theme_description) {
             @Override
             public void onToggle(boolean checked) {
                 Logger.log(LogTag.SETTINGS_ACTIVITY, "Toggled dark theme", checked ? "on" : "off");
