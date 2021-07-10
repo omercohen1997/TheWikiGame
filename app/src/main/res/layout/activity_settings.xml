@@ -10,8 +10,8 @@
             type="com.oog.thewikigame.models.TwoLineSwitchModel" />
 
         <variable
-            name="darkTheme"
-            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+            name="theme"
+            type="com.oog.thewikigame.models.TwoLineIconButtonModel" />
 
         <variable
             name="language"
@@ -59,11 +59,11 @@
                     app:twoLineSwitchModel="@{sounds}" />
 
                 <include
-                    android:id="@+id/settings_dark_theme_item_id"
-                    layout="@layout/list_item_two_line_switch"
+                    android:id="@+id/settings_theme_item_id"
+                    layout="@layout/list_item_two_line_icon_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:twoLineSwitchModel="@{darkTheme}" />
+                    app:twoLineIconButtonModel="@{theme}" />
 
                 <View
                     style="@style/Divider"

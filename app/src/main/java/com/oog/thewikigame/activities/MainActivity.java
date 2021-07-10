@@ -1,56 +1,56 @@
 package com.oog.thewikigame.activities;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.oog.thewikigame.R;
 import com.oog.thewikigame.databinding.ActivityMainBinding;
-import com.oog.thewikigame.utilities.LogTag;
-import com.oog.thewikigame.utilities.Logger;
-
-import java.util.Locale;
+import com.oog.thewikigame.handlers.LocaleHandler;
+import com.oog.thewikigame.handlers.ThemeHandler;
+import com.oog.thewikigame.utilities.ActivityResultUtil;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Locale locale;
+    private LocaleHandler.LocaleCode localeCode;
+
+    private ActivityResultLauncher<Intent> settingsActivityResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ThemeHandler.updateSystemToSavedTheme(this);
+        LocaleHandler.updateSystemToSavedLocale(this);
         super.onCreate(savedInstanceState);
 
-        //TODO: Clear this clutter and encapsulate ton of shit...
-        Logger.log(LogTag.MAIN_ACTIVITY, "Created MainActivity");
+        localeCode = LocaleHandler.getSavedLocale(this);
 
-        String localeString = getSharedPreferences("SETTINGS",MODE_PRIVATE).getString("lang","en");
-        locale = new Locale.Builder().setLanguage(localeString).build();
-        Configuration configuration = getResources().getConfiguration();
-        configuration.setLocale(locale);
-        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        settingsActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == ActivityResultUtil.RESULT_UPDATE){
+                if (!localeCode.equals(LocaleHandler.getSavedLocale(this))) recreate();
+            }
+        });
 
-        binding.mainButtonPlayId.setOnClickListener(v -> startActivityIntent(GameConfigActivity.class));
-        binding.mainButtonRecordsId.setOnClickListener(v -> startActivityIntent(GameRecordsActivity.class));
-        binding.mainButtonSettingsId.setOnClickListener(v -> startActivityIntent(SettingsActivity.class));
-        binding.mainButtonAboutId.setOnClickListener(v -> startActivityIntent(AboutActivity.class));
+        binding.mainButtonPlayId.setOnClickListener(v ->
+                startActivity(new Intent(this, GameConfigActivity.class)));
 
-    }
+        binding.mainButtonRecordsId.setOnClickListener(v ->
+                startActivity(new Intent(this, GameRecordsActivity.class)));
 
-    private void startActivityIntent(Class<?> cls) {
-        startActivity(new Intent(this, cls));
-    }
+        binding.mainButtonSettingsId.setOnClickListener(v ->{
+                Intent settingsActivityIntent = new Intent(this,SettingsActivity.class);
+                settingsActivityIntent.putExtra("LocaleCode",localeCode);
+                settingsActivityResultLauncher.launch(settingsActivityIntent);
+                });
 
+        binding.mainButtonAboutId.setOnClickListener(v ->
+                startActivity(new Intent(this, AboutActivity.class)));
 
-    //TODO: Change to startActivityForResult and listen to changes only from settings.
-    @Override
-    protected void onResume() {
-        super.onResume();
-        String localeString= getSharedPreferences("SETTINGS",MODE_PRIVATE).getString("lang","en");
-        Locale testNewLocale = new Locale.Builder().setLanguage(localeString).build();
-        if(!locale.equals(testNewLocale)) recreate();
     }
 }

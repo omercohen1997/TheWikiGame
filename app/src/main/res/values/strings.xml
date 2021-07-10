@@ -30,11 +30,14 @@
     <string name="settings_text_language_description">Currently set to English</string>
     <string name="settings_text_sounds">Sounds</string>
     <string name="settings_text_sounds_description">Toggle sounds on/off</string>
-    <string name="settings_text_dark_theme">Apply Dark Theme</string>
-    <string name="settings_text_dark_theme_description">Sets the app to dark mode if switched on</string>
+    <string name="settings_text_theme">Apply Theme</string>
+    <string name="settings_text_theme_description">Change the theme of the app.</string>
     <string name="settings_button_reset_settings">Reset settings</string>
     <string name="settings_dialog_reset_title">Reset Settings</string>
     <string name="settings_dialog_reset_description">This action will reset all application settings and return it to stock. Are you sure?</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_default">System Default</string>
 
 
 

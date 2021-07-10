@@ -17,5 +17,4 @@
     <style name="Theme.Danger" parent="Theme.TheWikiGame">
         <item name="colorPrimary">@color/design_default_color_error</item>
     </style>
-
 </resources>

@@ -14,11 +14,6 @@ import com.oog.thewikigame.utilities.Logger;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-
-
-
 abstract public class WebViewHandler{
 
     //The wikipedia base url
@@ -37,14 +32,22 @@ abstract public class WebViewHandler{
         SPANISH
     }
 
-    //This map will reference each Language entry to it's corresponding string name
-    private static final Map<Language, String> WIKI_LANGUAGE_MAP = new HashMap<Language, String>() {{
-        put(Language.ENGLISH, "en");
-        put(Language.HEBREW, "he");
-        put(Language.FRENCH, "fr");
-        put(Language.ARABIC, "ar");
-        put(Language.SPANISH, "es");
-    }};
+    private static String getLanguage(Language lang){
+        switch (lang) {
+            case HEBREW:
+                return "he";
+            case FRENCH:
+                return "fr";
+            case ARABIC:
+                return "ar";
+            case SPANISH:
+                return "sp";
+
+            case ENGLISH:
+            default:
+                return "en";
+        }
+    }
 
     //The WebView this class handles
     private final WebView webView;
@@ -100,7 +103,7 @@ abstract public class WebViewHandler{
 
     /**
      * The default constructor for English language
-     * @param webView - The WebView to manipuate
+     * @param webView - The WebView to manipulate
      */
     public WebViewHandler(WebView webView) {
         this(webView, Language.ENGLISH);
@@ -134,7 +137,7 @@ abstract public class WebViewHandler{
     public static @NotNull String constructURL(String article, Language lang) {
         if (article == null) article = "";
         return String.format("https://%s.%s/%s/%s",
-                WIKI_LANGUAGE_MAP.get(lang),
+                getLanguage(lang),
                 WIKI_BASE_URL,
                 WIKI_BASE_ARTICLE_ENDPOINT,
                 article);

@@ -2,6 +2,7 @@ package com.oog.thewikigame.utilities;
 
 public enum LogTag {
     MAIN_ACTIVITY,
+    GENERAL,
     HTTP,
     HTTP_EXCEPTION,
     LOCALE,

@@ -4,4 +4,10 @@
         <item>English</item>
         <item>עברית</item>
     </string-array>
+
+    <string-array name="themes">
+        <item>@string/theme_default</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_light</item>
+    </string-array>
 </resources>
