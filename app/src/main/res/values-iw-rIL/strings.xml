@@ -23,4 +23,12 @@
     <string name="game_config_text_start_article">מאמר התחלתי</string>
     <string name="text_loading">טוען…</string>
     <string name="game_config_text_end_article">מאמר סיום</string>
+    <string name="game_detail_text_date">תאריך</string>
+    <string name="game_detail_text_start_article">מאמר התחלה</string>
+    <string name="game_detail_text_end_article">מאמר סוף</string>
+    <string name="game_detail_text_time">זמן</string>
+    <string name="game_detail_text_jumps">קפיצות</string>
+    <string name="game_detail_text_returns">חזרות</string>
+    <string name="game_detail_text_find_in_text">למצוא בתוך טקסט</string>
+    <string name="game_detail_text_finished">סיים משחק</string>
 </resources>

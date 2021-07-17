@@ -17,6 +17,10 @@
             name="timeLimitTwoLineSwitchModel"
             type="com.oog.thewikigame.models.TwoLineSwitchModel" />
 
+        <variable
+            name="findInTextTwoLineSwitchModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -175,21 +179,17 @@
                             <include
                                 layout="@layout/list_item_two_line_switch"
                                 app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
-                            <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Number Of Returns"
-                                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
-                            <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Find In Text"
-                                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
-                            <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Show Links Only"
-                                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+                            <include
+                                layout="@layout/list_item_two_line_switch"
+                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                            <include
+                                layout="@layout/list_item_two_line_switch"
+                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                            <include
+                                layout="@layout/list_item_two_line_switch"
+                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+
+
 
 
                         </LinearLayout>
