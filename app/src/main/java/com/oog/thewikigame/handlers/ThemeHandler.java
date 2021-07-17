@@ -1,6 +1,7 @@
 package com.oog.thewikigame.handlers;
 
 import android.content.Context;
+import android.content.res.Configuration;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -112,6 +113,12 @@ public class ThemeHandler {
             default:
                 return Theme.DEFAULT;
         }
+    }
+
+    public static boolean isDarkTheme(Context context){
+        //TODO: Delete this logger.
+        Logger.log(LogTag.HANDLERS, "Current theme mode",context.getResources().getConfiguration().uiMode);
+        return (Configuration.UI_MODE_NIGHT_MASK & context.getResources().getConfiguration().uiMode) == Configuration.UI_MODE_NIGHT_YES;
     }
 
 }

@@ -16,6 +16,12 @@
         <variable
             name="timeLimitTwoLineSwitchModel"
             type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+        <variable
+            name="pornhubHaHa"
+            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+        <variable
+            name="findInTextSwitchModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
 
     </data>
 
@@ -152,13 +158,10 @@
                             app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
                         <include
                             layout="@layout/list_item_two_line_switch"
-                            app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                            app:twoLineSwitchModel="@{findInTextSwitchModel}" />
                         <include
                             layout="@layout/list_item_two_line_switch"
-                            app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
-                        <include
-                            layout="@layout/list_item_two_line_switch"
-                            app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                            app:twoLineSwitchModel="@{pornhubHaHa}" />
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

@@ -3,7 +3,7 @@
 
     <!--    Buttons-->
     <string name="button_ok">OK</string>
-
+    <string name="button_cancel">Cancel</string>
     <!--    Alerts-->
     <string name="alert_invalid_link">You tried to reach an invalid link.</string>
 
@@ -21,9 +21,19 @@
     <string name="main_button_records">Game Records</string>
     <string name="main_button_about">About</string>
 
+
+    <!--    Game Activity-->
+    <string name="game_find_in_text">Find in text</string>
+    <string name="game_go_back">Go back</string>
+    <string name="game_exit">Exit</string>
+    <string name="game_button_find">Find</string>
+
     <!--    Game Configuration Activity-->
     <string name="game_config_text_start_article">Start Article</string>
     <string name="game_config_text_end_article">End Article</string>
+
+
+
 
     <!--    Settings Activity-->
     <string name="settings_text_language">Language</string>
@@ -38,7 +48,6 @@
     <string name="theme_dark">Dark</string>
     <string name="theme_light">Light</string>
     <string name="theme_default">System Default</string>
-
 
 
 </resources>

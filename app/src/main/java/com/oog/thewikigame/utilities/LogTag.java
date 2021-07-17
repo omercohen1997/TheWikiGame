@@ -3,10 +3,10 @@ package com.oog.thewikigame.utilities;
 public enum LogTag {
     MAIN_ACTIVITY,
     GENERAL,
+    GAME_ACTIVITY,
     HTTP,
     HTTP_EXCEPTION,
-    LOCALE,
+    HANDLERS,
     SETTINGS_ACTIVITY,
-    WEB_VIEW_HANDLER,
     EXCEPTION
 }

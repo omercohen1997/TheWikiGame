@@ -2,7 +2,6 @@
 package com.oog.thewikigame.handlers;
 
         import android.content.Context;
-        import android.content.SharedPreferences;
         import android.content.res.Configuration;
 
         import com.oog.thewikigame.utilities.LogTag;
@@ -124,7 +123,7 @@ public class LocaleHandler {
     public LocaleCode getCurrentLocale(Context context){
         String currentLocaleLang = context.getResources().getConfiguration().locale.getLanguage();
         //TODO: Delete this logger.
-        Logger.log(LogTag.LOCALE,"Current System Locale:",currentLocaleLang);
+        Logger.log(LogTag.HANDLERS,"Current System Locale:",currentLocaleLang);
         switch (currentLocaleLang){
             case LANG_HE:
                 return LocaleCode.HE_IL;

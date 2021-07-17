@@ -26,4 +26,9 @@
     <string name="theme_dark">חשוך</string>
     <string name="theme_light">בהיר</string>
     <string name="theme_default">ברירת מחדל מערכת</string>
+    <string name="game_find_in_text">מצא בטקסט</string>
+    <string name="game_go_back">חזור אחורה</string>
+    <string name="game_exit">יציאה</string>
+    <string name="button_cancel">בטל</string>
+    <string name="game_button_find">חפש</string>
 </resources>

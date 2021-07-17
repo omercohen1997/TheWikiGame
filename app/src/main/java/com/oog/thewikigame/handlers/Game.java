@@ -2,128 +2,175 @@ package com.oog.thewikigame.handlers;
 
 import android.webkit.WebView;
 
+import com.oog.thewikigame.utilities.LogTag;
+import com.oog.thewikigame.utilities.Logger;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 abstract public class Game {
 
-    /*  This stack will hold all the visited pages.
-        We decided to use a stack because it really fits into our design of popping the last visited page if the player chooses so.
-     */
-    private final Stack<Page> pageStack=new Stack<>();
-    private final WebViewHandler webViewHandler ;
-    private int jumps = 0;
-    private final long startTime = System.nanoTime();
-    private final GamePreferences gamePreferences;
+    public static final int UNLIMITED = -1;
 
-    public class GamePreferences {
-        public int n_Jumps;
-        public int n_Returns;
-        public int n_FindInText;
-        public int n_ShowLinksOnly;
+    private final Stack<Page> pageStack = new Stack<>();
+    private final WebViewHandler webViewHandler;
+    private final long startTime = System.currentTimeMillis();
+    private final GameConfig gameConfig;
 
-        public GamePreferences(int n_Jumps, int n_Returns, int n_FindInText, int n_ShowLinksOnly) {
-            this.n_Jumps = n_Jumps;
-            this.n_Returns = n_Returns;
-            this.n_FindInText = n_FindInText;
-            this.n_ShowLinksOnly = n_ShowLinksOnly;
+
+    public static class GameConfig implements Serializable {
+        private final String startArtricle;
+        private final String endArticle;
+        private int numOfJumps;
+        private int numOnReturns;
+        private int numOfFindInText;
+        private int numOfShowLinksOnly;
+        private final long timeLimit;
+        private final boolean darkTheme;
+
+        public GameConfig(String startArticle, String endArticle, int numOfJumps, int numOnReturns, int numOfFindInText, int numOfShowLinksOnly, long timeLimit, boolean darkTheme) {
+            this.startArtricle = startArticle;
+            this.endArticle = endArticle;
+            this.numOfJumps = numOfJumps;
+            this.numOnReturns = numOnReturns;
+            this.numOfFindInText = numOfFindInText;
+            this.numOfShowLinksOnly = numOfShowLinksOnly;
+            this.timeLimit = timeLimit;
+            this.darkTheme = darkTheme;
         }
 
-        public boolean useRescue(RescueType help) {
-            switch (help) {
-                case SHOW_LINKS_ONLY:
-                    if (n_ShowLinksOnly == 0) return false;
-                    if (gamePreferences.n_ShowLinksOnly != -1) n_ShowLinksOnly--;
-                    break;
-                case FIND_IN_TEXT:
-                    if (n_FindInText == 0) return false;
-                    if (n_FindInText != -1) n_FindInText--;
-                    break;
-                case RETURN_BACK:
-                    if (n_Returns == 0) return false;
-                    if (n_Returns != -1) n_Returns--;
-                    break;
-            }
-            return true;
+        public String getStartArtricle() {
+            return startArtricle;
+        }
+
+        public String getEndArticle() {
+            return endArticle;
+        }
+
+        public int getNumOfJumps() {
+            return numOfJumps;
+        }
+
+        public int getNumOnReturns() {
+            return numOnReturns;
+        }
+
+        public int getNumOfFindInText() {
+            return numOfFindInText;
+        }
+
+        public int getNumOfShowLinksOnly() {
+            return numOfShowLinksOnly;
+        }
+
+        public long getTimeLimit() {
+            return timeLimit;
+        }
+
+        public boolean getDarkTheme() {
+            return darkTheme;
         }
     }
 
-    public Game(WebView webView, GamePreferences gamePreferences){
-        webViewHandler = new WebViewHandler(webView) {
+
+    public Game(WebView webView, String startArticle, String endArticle, GameConfig gameConfig) {
+        webViewHandler = new WebViewHandler(webView, gameConfig.getDarkTheme()) {
             @Override
-            public void onNextArticle(String article) {
+            public void onLoadedArticle(String article) {
+                Logger.log(LogTag.HANDLERS, "Received next article from WebViewHandler:", article);
                 pageStack.peek().exit();
-                jumps++;
-                addNextPage(article,jumps);
+                pushNewPage(article);
+                if (article.equals(endArticle)) {
+                    pageStack.peek().exit();
+                    onGameFinished(true, createPagesSummaryList());
+                }
             }
         };
-        this.gamePreferences = gamePreferences;
+        this.gameConfig = gameConfig;
+        pushNewPage(startArticle);
+        webViewHandler.loadArticle(startArticle);
     }
 
-    private void addNextPage(String article,int nextJump){
-        Page nextPage = new Page(article,nextJump,System.nanoTime()-startTime) {
-
-            @Override
-            void onEnteredPage(String article,boolean usedFindInText, boolean usedShowLinksOnly) {
-                if(usedFindInText) onUnlock(RescueType.FIND_IN_TEXT);
-                if(usedShowLinksOnly) onUnlock(RescueType.SHOW_LINKS_ONLY);
-                webViewHandler.loadArticle(article);
-            }
-
-            @Override
-            void onExitedPage() {
-                onExitPage();
-            }
-
-            @Override
-            void onUnlockedHelp(RescueType help) {
-                onUnlock(help);
-            }
-        };
+    /**
+     * This method will push a new page to the stack
+     *
+     * @param article the article of the new page to push
+     */
+    private void pushNewPage(String article) {
+        Page nextPage = new Page(article);
         pageStack.push(nextPage);
     }
 
-    /**
-     * This needs to be implemented by the game activity to handle exiting a page.
-     * This will be used to lock all helps on the game activity.
-     */
-    abstract void onExitPage();
 
-    /**
-     * This needs to be implemented to unlock the ui elements and logic that related to the specified help
-     * @param help - The rescue that has been unlocked.
-     */
-    abstract void onUnlock(RescueType help);
-
-
-
-    //TODO: Change the reason to resource string id.
-    /**
-     * This will be an error handler that is called when an unlock failed
-     * @param help - The rescue that has failed unlocking.
-     * @param reason - The reason why it happened.
-     */
-    abstract void onUnlockFailed(RescueType help, String reason);
-
-    /**
-     * This method will be called when trying to unlock a certain help.
-     * It will deploy a chain of events that consequentially tell the game activity how to act.
-     * @param help - The rescue that we try to unlock.
-     */
-    void unlockHelp(RescueType help){
-        if(!gamePreferences.useRescue(help)) {
-            onUnlockFailed(help,"Used Maximum Unlocks");
-            return;
-        }
-        if (help == RescueType.RETURN_BACK) {
-            if (jumps == 0) {
-                onUnlockFailed(RescueType.RETURN_BACK, "Reached first article, nowhere to go back to");
-                return;
-            }
-            jumps--;
-            pageStack.pop();
-            pageStack.peek().enter();
-        }
-        else pageStack.peek().unlockHelp(help);
+    public Page getPage() {
+        return pageStack.peek();
     }
+
+    public int getJump() {
+        return pageStack.size() - 1;
+    }
+
+
+    public void findInText(String text) {
+        webViewHandler.find(text);
+    }
+
+    public void goBack() {
+        if (pageStack.size() > 1) {
+            pageStack.pop();
+            getPage().enter();
+            webViewHandler.loadArticle(getPage().getArticle());
+        }
+    }
+
+    public void toggleShowLinksOnly() {
+        webViewHandler.toggleText();
+    }
+
+    public long getTimeElapsedMillis() {
+        return System.currentTimeMillis() - startTime;
+    }
+
+    public boolean isRescueValid(RescueType rescueType) {
+        if (pageStack.peek().useHelp(rescueType) > 0) return true;
+        switch (rescueType) {
+            case SHOW_LINKS_ONLY:
+                if (gameConfig.numOfShowLinksOnly == 0) return false;
+                if (gameConfig.numOfShowLinksOnly != UNLIMITED)
+                    gameConfig.numOfShowLinksOnly--;
+                break;
+            case FIND_IN_TEXT:
+                if (gameConfig.numOfFindInText == 0) return false;
+                if (gameConfig.numOfFindInText != UNLIMITED) gameConfig.numOfFindInText--;
+                break;
+            case GO_BACK:
+                if (gameConfig.numOnReturns == 0) return false;
+                if (gameConfig.numOnReturns != UNLIMITED) gameConfig.numOnReturns--;
+                break;
+        }
+        return true;
+    }
+
+    public void failed() {
+        onGameFinished(false, createPagesSummaryList());
+    }
+
+
+    /**
+     * This method will be invoked when the game is finished.
+     */
+    protected abstract void onGameFinished(boolean success, List<Page.PageSummary> pageSummaryList);
+
+
+    private List<Page.PageSummary> createPagesSummaryList() {
+        List<Page.PageSummary> list = new ArrayList<>();
+        for (Page page : pageStack) {
+            list.add(page.createPageSummary());
+        }
+        return list;
+    }
+
 
 }
