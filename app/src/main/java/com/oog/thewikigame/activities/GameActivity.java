@@ -37,6 +37,7 @@ public class GameActivity extends AppCompatActivity {
     public Game.GameConfig gameConfig;
     Handler timeHandler;
     String findText = "";
+    boolean isRunning = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +100,7 @@ public class GameActivity extends AppCompatActivity {
         }
         MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
         View dialogView = LayoutInflater.from(dialogBuilder.getContext()).inflate(R.layout.dialog_view_find_in_text, null);
-        EditText textField = (EditText) dialogView.findViewById(R.id.dialog_find_in_text_input_id);
+        EditText textField = dialogView.findViewById(R.id.dialog_find_in_text_input_id);
         textField.setText(findText);
         dialogBuilder.setTitle(R.string.game_find_in_text);
         dialogBuilder.setView(dialogView);
@@ -128,14 +129,14 @@ public class GameActivity extends AppCompatActivity {
                 limit = game.getTimeElapsedMillis();
                 loopTimer();
             }
-            binding.gameToolbarId.setTitle(milliTimeToString(limit)+" "+jumpsToString());
+            binding.gameToolbarId.setTitle(milliTimeToString(limit) + " " + jumpsToString());
         }, 200);
     }
 
-    private String jumpsToString(){
-        if(gameConfig.getNumOfJumps()==Game.UNLIMITED)
-            return game.getJump()+"/∞";
-        else return game.getJump()+"/"+gameConfig.getNumOfJumps();
+    private String jumpsToString() {
+        if (gameConfig.getNumOfJumps() == Game.UNLIMITED)
+            return game.getJump() + "/∞";
+        else return game.getJump() + "/" + gameConfig.getNumOfJumps();
     }
 
     private String milliTimeToString(long milliTime) {

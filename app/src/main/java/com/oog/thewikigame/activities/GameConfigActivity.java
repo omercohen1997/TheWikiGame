@@ -20,6 +20,7 @@ import com.oog.thewikigame.R;
 import com.oog.thewikigame.databinding.ActivityGameConfigBinding;
 import com.oog.thewikigame.handlers.Game;
 import com.oog.thewikigame.handlers.ThemeHandler;
+import com.oog.thewikigame.handlers.WebViewHandler;
 import com.oog.thewikigame.models.IconButtonModel;
 import com.oog.thewikigame.models.TwoLineSwitchModel;
 import com.oog.thewikigame.utilities.LogTag;
@@ -48,12 +49,12 @@ public class GameConfigActivity extends AppCompatActivity {
         int jumpLimit = 10;
         Game.GameConfig gameConfig = new Game.GameConfig("Son_Goku",
                 "Monkey_King",
+                WebViewHandler.Language.SPANISH,
                 jumpLimit,
                 Game.UNLIMITED,
                 Game.UNLIMITED,
                 Game.UNLIMITED,
-                timeLimit,
-                ThemeHandler.isDarkTheme(this));
+                timeLimit);
 
         Intent gameIntent = new Intent(this, GameActivity.class);
         gameIntent.putExtra(GameActivity.INTENT_GAME_CONFIG, gameConfig);

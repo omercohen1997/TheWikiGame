@@ -33,7 +33,7 @@ abstract public class WebViewHandler {
     abstract public void onLoadedArticle(String article);
 
     //An enum for all playable wikipedia languages.
-    enum Language {
+    public enum Language {
         ENGLISH,
         HEBREW,
         FRENCH,
@@ -41,6 +41,12 @@ abstract public class WebViewHandler {
         SPANISH
     }
 
+    /**
+     * This method returns the string reference for each language
+     *
+     * @param lang the language to get
+     * @return a string value for the given language.
+     */
     private static String getLanguage(Language lang) {
         switch (lang) {
             case HEBREW:
@@ -77,10 +83,10 @@ abstract public class WebViewHandler {
      * @param darkMode if true sets the webview to dark mode.
      */
     @SuppressLint("SetJavaScriptEnabled")
-    public WebViewHandler(@NotNull WebView webView, Language lang, boolean darkMode) {
+    public WebViewHandler(@NotNull WebView webView, Language lang) {
         this.language = lang;
         this.webView = webView;
-        this.darkMode = darkMode;
+        this.darkMode = ThemeHandler.isDarkTheme(webView.getContext());
         WebViewClient mainClient = new WebViewClient() {
 
             @Override
@@ -125,8 +131,8 @@ abstract public class WebViewHandler {
      * @param webView  The WebView to handle
      * @param darkMode if true sets the webview to dark mode.
      */
-    public WebViewHandler(WebView webView, boolean darkMode) {
-        this(webView, Language.ENGLISH, darkMode);
+    public WebViewHandler(WebView webView) {
+        this(webView, Language.ENGLISH);
     }
 
     /**
@@ -196,7 +202,7 @@ abstract public class WebViewHandler {
      * This method will inject a javascript snippet to the page that toggles all texts' visibility except links.
      */
     public void toggleText() {
-        String js = "javascript:(function(){var style = document.querySelector(\"#injectedWikiStyle\");if(style) style.remove();else {style = document.createElement('style');style.id = \"injectedWikiStyle\";style.textContent = \"body {color:rgba(0,0,0,0);}\";document.head.append(style);}})();";
+        String js = "javascript:(function(){var style = document.querySelector(\"#injectedWikiStyle\");if(style) style.remove();else {style = document.createElement('style');style.id = \"injectedWikiStyle\";style.textContent = \"* {color:rgba(0,0,0,0);}\";document.head.append(style);}})();";
         webView.loadUrl(js);
     }
 

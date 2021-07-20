@@ -21,28 +21,36 @@ abstract public class Game {
 
 
     public static class GameConfig implements Serializable {
-        private final String startArtricle;
+        private final String startArticle;
         private final String endArticle;
-        private int numOfJumps;
+        private final WebViewHandler.Language language;
+        private final int numOfJumps;
         private int numOnReturns;
         private int numOfFindInText;
         private int numOfShowLinksOnly;
         private final long timeLimit;
-        private final boolean darkTheme;
 
-        public GameConfig(String startArticle, String endArticle, int numOfJumps, int numOnReturns, int numOfFindInText, int numOfShowLinksOnly, long timeLimit, boolean darkTheme) {
-            this.startArtricle = startArticle;
+
+        public GameConfig(String startArticle,
+                          String endArticle,
+                          WebViewHandler.Language language,
+                          int numOfJumps,
+                          int numOnReturns,
+                          int numOfFindInText,
+                          int numOfShowLinksOnly,
+                          long timeLimit) {
+            this.startArticle = startArticle;
             this.endArticle = endArticle;
+            this.language = language;
             this.numOfJumps = numOfJumps;
             this.numOnReturns = numOnReturns;
             this.numOfFindInText = numOfFindInText;
             this.numOfShowLinksOnly = numOfShowLinksOnly;
             this.timeLimit = timeLimit;
-            this.darkTheme = darkTheme;
         }
 
-        public String getStartArtricle() {
-            return startArtricle;
+        public String getStartArticle() {
+            return startArticle;
         }
 
         public String getEndArticle() {
@@ -69,14 +77,14 @@ abstract public class Game {
             return timeLimit;
         }
 
-        public boolean getDarkTheme() {
-            return darkTheme;
+        public WebViewHandler.Language getLanguage() {
+            return language;
         }
     }
 
 
     public Game(WebView webView, String startArticle, String endArticle, GameConfig gameConfig) {
-        webViewHandler = new WebViewHandler(webView, gameConfig.getDarkTheme()) {
+        webViewHandler = new WebViewHandler(webView) {
             @Override
             public void onLoadedArticle(String article) {
                 Logger.log(LogTag.HANDLERS, "Received next article from WebViewHandler:", article);
