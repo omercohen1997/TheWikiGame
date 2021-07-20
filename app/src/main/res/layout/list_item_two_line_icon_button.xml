@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
@@ -36,7 +36,7 @@
                 android:text="@{twoLineIconButtonModel.primaryText}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

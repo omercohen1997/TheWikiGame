@@ -2,12 +2,17 @@ package com.oog.thewikigame.activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -26,13 +31,15 @@ import com.oog.thewikigame.models.TwoLineSwitchModel;
 import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class GameConfigActivity extends AppCompatActivity {
+
+    LinearLayout expandableView;
+    TextView textView;
+    CardView cardView;
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -40,6 +47,21 @@ public class GameConfigActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         ActivityGameConfigBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_game_config);
+        binding.showconfig.setOnClickListener((v)->{
+            if (expandableView.getVisibility() == View.GONE){
+                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                expandableView.setVisibility(View.VISIBLE);
+            }
+            else{
+                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                expandableView.setVisibility(View.GONE);
+            }
+        });
+
+        expandableView = findViewById(R.id.expandable_view);
+        textView = findViewById(R.id.showconfig);
+        cardView = findViewById(R.id.cardview_expandable);
+
 
 
         //TODO: Delete this.
@@ -91,39 +113,11 @@ public class GameConfigActivity extends AppCompatActivity {
             });
         }));
 
-
-        TwoLineSwitchModel timeLimitSwitchModel = new TwoLineSwitchModel("Time Limit", "This will set a time limit to finish the game.") {
+        binding.setTimeLimitTwoLineSwitchModel(new TwoLineSwitchModel("Time Limit", "This will set a time limit to finish the game.") {
             @Override
             public void onToggle(boolean checked) {
                 //TODO: Add time limit functionality.
             }
-        };
-
-        TwoLineSwitchModel findInTextSwitchModel = new TwoLineSwitchModel("Find in text", "to find in text") {
-            @Override
-            public void onToggle(boolean checked) {
-                //TODO: do something.
-            }
-        };
-
-        TwoLineSwitchModel openPornHub = new TwoLineSwitchModel("Open pornhub", "yup:") {
-            @Override
-            public void onToggle(boolean checked) {
-                if (checked) {
-                    try {
-                        URL url = new URL("https://pornhub.com");
-                        url.openConnection();
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-
-        binding.setTimeLimitTwoLineSwitchModel(timeLimitSwitchModel);
-        binding.setPornhubHaHa(openPornHub);
-        binding.setFindInTextSwitchModel(findInTextSwitchModel);
+        });
     }
 }

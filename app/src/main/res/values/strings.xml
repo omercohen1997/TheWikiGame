@@ -21,18 +21,16 @@
     <string name="main_button_records">Game Records</string>
     <string name="main_button_about">About</string>
 
+    <!--    Game Configuration Activity-->
+    <string name="game_config_text_start_article">Start Article</string>
+    <string name="game_config_text_end_article">End Article</string>
+
 
     <!--    Game Activity-->
     <string name="game_find_in_text">Find in text</string>
     <string name="game_go_back">Go back</string>
     <string name="game_exit">Exit</string>
     <string name="game_button_find">Find</string>
-
-    <!--    Game Configuration Activity-->
-    <string name="game_config_text_start_article">Start Article</string>
-    <string name="game_config_text_end_article">End Article</string>
-
-
 
 
     <!--    Settings Activity-->
@@ -45,9 +43,19 @@
     <string name="settings_button_reset_settings">Reset settings</string>
     <string name="settings_dialog_reset_title">Reset Settings</string>
     <string name="settings_dialog_reset_description">This action will reset all application settings and return it to stock. Are you sure?</string>
-    <string name="theme_dark">Dark</string>
     <string name="theme_light">Light</string>
     <string name="theme_default">System Default</string>
+    <string name="theme_dark">Dark</string>
 
+
+    <!--    Game Detail Activity-->
+    <string name="game_detail_text_date">Date</string>
+    <string name="game_detail_text_start_article">Start Article</string>
+    <string name="game_detail_text_end_article">End Article</string>
+    <string name="game_detail_text_time">Time</string>
+    <string name="game_detail_text_jumps">Jumps</string>
+    <string name="game_detail_text_returns">Returns</string>
+    <string name="game_detail_text_find_in_text">Find In Text</string>
+    <string name="game_detail_text_finished">Finished</string>
 
 </resources>
