@@ -2,6 +2,8 @@ package com.oog.thewikigame.models;
 
 import android.content.Context;
 
+
+//TODO: Possibly irrelevant.
 public class ListItemTwoLineTextSwitchModel extends TwoLineSwitchModel{
 
     public ListItemTwoLineTextSwitchModel(String primaryTitle, String secondaryTitle) {

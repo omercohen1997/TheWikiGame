@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="twoLinePopupModel"
+            type="com.oog.thewikigame.models.TwoLinePopupModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="64dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/list_item_two_line_switch_primary_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="8dp"
+                android:text="@{twoLinePopupModel.primaryText}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/list_item_two_line_switch_secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:maxLines="2"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:text="@{twoLinePopupModel.secondaryText}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/list_item_two_line_text_popup_selection_id"
+                values="@{twoLinePopupModel.values}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+</layout>

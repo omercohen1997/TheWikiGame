@@ -24,6 +24,13 @@
     <!--    Game Configuration Activity-->
     <string name="game_config_text_start_article">Start Article</string>
     <string name="game_config_text_end_article">End Article</string>
+    <string name="game_config_language_english">English</string>
+    <string name="game_config_language_hebrew">Hebrew</string>
+    <string name="game_config_language_arabic">Arabic</string>
+    <string name="game_config_language_russian">Russian</string>
+    <string name="game_config_language_french">French</string>
+    <string name="game_config_language_spanish">Spanish</string>
+
 
 
     <!--    Game Activity-->

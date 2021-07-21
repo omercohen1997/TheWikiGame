@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.oog.thewikigame.activities.SettingsActivity;
 import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 import com.oog.thewikigame.wrappers.SharedPreferencesWrapper;
@@ -93,7 +94,8 @@ public class ThemeHandler {
                 themeString = DEFAULT;
                 break;
         }
-        SharedPreferencesWrapper.putString(context, SharedPreferencesWrapper.Preference.SETTINGS,THEME_KEY,themeString);
+
+        SharedPreferencesWrapper.make(context, SharedPreferencesWrapper.Preference.SETTINGS).putString(THEME_KEY,themeString);
     }
 
     /**
@@ -102,7 +104,7 @@ public class ThemeHandler {
      * @return the theme in the preferences.
      */
     public static Theme getSavedTheme(Context context) {
-        String savedTheme = SharedPreferencesWrapper.getString(context, SharedPreferencesWrapper.Preference.SETTINGS, THEME_KEY, DEFAULT);
+        String savedTheme = SharedPreferencesWrapper.make(context, SharedPreferencesWrapper.Preference.SETTINGS).getString(THEME_KEY, DEFAULT);
         Logger.log(LogTag.GENERAL,"");
         switch (savedTheme) {
             case LIGHT:
@@ -116,8 +118,6 @@ public class ThemeHandler {
     }
 
     public static boolean isDarkTheme(Context context){
-        //TODO: Delete this logger.
-        Logger.log(LogTag.HANDLERS, "Current theme mode",context.getResources().getConfiguration().uiMode);
         return (Configuration.UI_MODE_NIGHT_MASK & context.getResources().getConfiguration().uiMode) == Configuration.UI_MODE_NIGHT_YES;
     }
 

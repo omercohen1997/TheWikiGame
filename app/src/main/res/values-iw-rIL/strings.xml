@@ -39,4 +39,10 @@
     <string name="game_detail_text_returns">חזרות</string>
     <string name="game_detail_text_find_in_text">למצוא בתוך טקסט</string>
     <string name="game_detail_text_finished">סיים משחק</string>
+    <string name="game_config_language_english">אנגלית</string>
+    <string name="game_config_language_hebrew">עברית</string>
+    <string name="game_config_language_arabic">ערבית</string>
+    <string name="game_config_language_french">צרפתית</string>
+    <string name="game_config_language_spanish">ספרדית</string>
+    <string name="game_config_language_russian">רוסית</string>
 </resources>

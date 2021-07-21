@@ -13,16 +13,16 @@ public class WebViewHandlerTest {
                 WebViewHandler.constructURL("Goku"));
 
         Assert.assertEquals("https://en.m.wikipedia.org/wiki/Goku",
-                WebViewHandler.constructURL("Goku", WebViewHandler.Language.ENGLISH));
+                WebViewHandler.constructURL("Goku", GameLanguage.ENGLISH));
 
         Assert.assertEquals("https://fr.m.wikipedia.org/wiki/Goku",
-                WebViewHandler.constructURL("Goku", WebViewHandler.Language.FRENCH));
+                WebViewHandler.constructURL("Goku", GameLanguage.FRENCH));
 
         Assert.assertEquals("https://en.m.wikipedia.org/wiki/",
-                WebViewHandler.constructURL(null, WebViewHandler.Language.ENGLISH));
+                WebViewHandler.constructURL(null, GameLanguage.ENGLISH));
 
         Assert.assertEquals("https://en.m.wikipedia.org/wiki/%s",
-                WebViewHandler.constructURL("%s", WebViewHandler.Language.ENGLISH));
+                WebViewHandler.constructURL("%s", GameLanguage.ENGLISH));
 
     }
 }

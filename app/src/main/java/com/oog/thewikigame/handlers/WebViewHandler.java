@@ -32,22 +32,13 @@ abstract public class WebViewHandler {
      */
     abstract public void onLoadedArticle(String article);
 
-    //An enum for all playable wikipedia languages.
-    public enum Language {
-        ENGLISH,
-        HEBREW,
-        FRENCH,
-        ARABIC,
-        SPANISH
-    }
-
     /**
      * This method returns the string reference for each language
      *
      * @param lang the language to get
      * @return a string value for the given language.
      */
-    private static String getLanguage(Language lang) {
+    private static String getLanguage(GameLanguage lang) {
         switch (lang) {
             case HEBREW:
                 return "he";
@@ -57,7 +48,8 @@ abstract public class WebViewHandler {
                 return "ar";
             case SPANISH:
                 return "sp";
-
+            case RUSSIAN:
+                return "ru";
             case ENGLISH:
             default:
                 return "en";
@@ -67,7 +59,7 @@ abstract public class WebViewHandler {
     //The WebView this class handles
     private final WebView webView;
     //The language of the wikipedia pages
-    private final Language language;
+    private final GameLanguage language;
     //The current loaded url.
 
     private final boolean darkMode;
@@ -80,10 +72,9 @@ abstract public class WebViewHandler {
      *
      * @param webView  The view to hold and manipulate
      * @param lang     The language of the wikipedia game.
-     * @param darkMode if true sets the webview to dark mode.
      */
     @SuppressLint("SetJavaScriptEnabled")
-    public WebViewHandler(@NotNull WebView webView, Language lang) {
+    public WebViewHandler(@NotNull WebView webView, GameLanguage lang) {
         this.language = lang;
         this.webView = webView;
         this.darkMode = ThemeHandler.isDarkTheme(webView.getContext());
@@ -129,10 +120,9 @@ abstract public class WebViewHandler {
      * It sets the whole session to English.
      *
      * @param webView  The WebView to handle
-     * @param darkMode if true sets the webview to dark mode.
      */
     public WebViewHandler(WebView webView) {
-        this(webView, Language.ENGLISH);
+        this(webView, GameLanguage.ENGLISH);
     }
 
     /**
@@ -141,7 +131,7 @@ abstract public class WebViewHandler {
      * @param article The article endpoint to load
      * @param lang    The language of the article
      */
-    public void loadArticle(String article, Language lang) {
+    public void loadArticle(String article, GameLanguage lang) {
         currentArticle = article;
         String url = constructURL(article, lang);
         webView.loadUrl(url);
@@ -153,7 +143,7 @@ abstract public class WebViewHandler {
      * @param article The article endpoint to load
      */
     public void loadArticle(String article) {
-        loadArticle(article, Language.ENGLISH);
+        loadArticle(article, GameLanguage.ENGLISH);
     }
 
     /**
@@ -163,7 +153,7 @@ abstract public class WebViewHandler {
      * @param lang    the language of the page
      * @return the formatted url of the article.
      */
-    public static @NotNull String constructURL(String article, Language lang) {
+    public static @NotNull String constructURL(String article, GameLanguage lang) {
         if (article == null) article = "";
         return String.format("https://%s.%s/%s/%s",
                 getLanguage(lang),
@@ -180,7 +170,7 @@ abstract public class WebViewHandler {
      * @return the formatted url of the article.
      */
     public static String constructURL(String article) {
-        return constructURL(article, Language.ENGLISH);
+        return constructURL(article, GameLanguage.ENGLISH);
     }
 
 

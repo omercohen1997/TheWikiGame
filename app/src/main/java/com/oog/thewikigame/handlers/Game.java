@@ -2,6 +2,8 @@ package com.oog.thewikigame.handlers;
 
 import android.webkit.WebView;
 
+import androidx.annotation.Nullable;
+
 import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 
@@ -23,9 +25,9 @@ abstract public class Game {
     public static class GameConfig implements Serializable {
         private final String startArticle;
         private final String endArticle;
-        private final WebViewHandler.Language language;
+        private final GameLanguage language;
         private final int numOfJumps;
-        private int numOnReturns;
+        private int numOfGoBack;
         private int numOfFindInText;
         private int numOfShowLinksOnly;
         private final long timeLimit;
@@ -33,9 +35,9 @@ abstract public class Game {
 
         public GameConfig(String startArticle,
                           String endArticle,
-                          WebViewHandler.Language language,
+                          GameLanguage language,
                           int numOfJumps,
-                          int numOnReturns,
+                          int numOfGoBack,
                           int numOfFindInText,
                           int numOfShowLinksOnly,
                           long timeLimit) {
@@ -43,11 +45,12 @@ abstract public class Game {
             this.endArticle = endArticle;
             this.language = language;
             this.numOfJumps = numOfJumps;
-            this.numOnReturns = numOnReturns;
+            this.numOfGoBack = numOfGoBack;
             this.numOfFindInText = numOfFindInText;
             this.numOfShowLinksOnly = numOfShowLinksOnly;
             this.timeLimit = timeLimit;
         }
+
 
         public String getStartArticle() {
             return startArticle;
@@ -61,8 +64,8 @@ abstract public class Game {
             return numOfJumps;
         }
 
-        public int getNumOnReturns() {
-            return numOnReturns;
+        public int getNumOfGoBack() {
+            return numOfGoBack;
         }
 
         public int getNumOfFindInText() {
@@ -77,7 +80,7 @@ abstract public class Game {
             return timeLimit;
         }
 
-        public WebViewHandler.Language getLanguage() {
+        public GameLanguage getLanguage() {
             return language;
         }
     }
@@ -111,6 +114,9 @@ abstract public class Game {
         pageStack.push(nextPage);
     }
 
+    public GameConfig getGameStats() {
+        return this.gameConfig;
+    }
 
     public Page getPage() {
         return pageStack.peek();
@@ -121,55 +127,56 @@ abstract public class Game {
     }
 
 
-    public void findInText(String text) {
+    public void useFindInText(String text) {
+        if (getPage().useHelp(RescueType.FIND_IN_TEXT) == 0 || gameConfig.numOfFindInText != UNLIMITED) {
+            if (gameConfig.numOfFindInText == 0) {
+                onRescueUseFailed(RescueType.FIND_IN_TEXT, "No more show links only rescues.");
+                return;
+            }
+            gameConfig.numOfFindInText--;
+        }
         webViewHandler.find(text);
+        onRescueUseSuccess(RescueType.FIND_IN_TEXT,gameConfig.getNumOfFindInText());
     }
 
-    public void goBack() {
-        if (pageStack.size() > 1) {
-            pageStack.pop();
-            getPage().enter();
-            webViewHandler.loadArticle(getPage().getArticle());
+    public void useGoBack() {
+        if (pageStack.size() == 1) {
+            onRescueUseFailed(RescueType.GO_BACK, "First article; nowhere to go back.");
+            return;
         }
+        if (getPage().useHelp(RescueType.GO_BACK) == 0) {
+            if (gameConfig.numOfGoBack == 0) {
+                onRescueUseFailed(RescueType.GO_BACK, "No more go back rescues.");
+                return;
+            }
+            if (gameConfig.numOfGoBack != UNLIMITED) gameConfig.numOfGoBack--;
+        }
+        pageStack.pop();
+        getPage().enter();
+        webViewHandler.loadArticle(getPage().getArticle());
+        onRescueUseSuccess(RescueType.GO_BACK, gameConfig.getNumOfGoBack());
     }
 
     public void toggleShowLinksOnly() {
+        if (getPage().useHelp(RescueType.SHOW_LINKS_ONLY) == 0) {
+            if (gameConfig.numOfShowLinksOnly == 0) {
+                onRescueUseFailed(RescueType.SHOW_LINKS_ONLY, "No more show links only rescues.");
+                return;
+            }
+            if (gameConfig.numOfShowLinksOnly != UNLIMITED)
+                gameConfig.numOfShowLinksOnly--;
+        }
         webViewHandler.toggleText();
+        onRescueUseSuccess(RescueType.SHOW_LINKS_ONLY, gameConfig.getNumOfShowLinksOnly());
     }
 
     public long getTimeElapsedMillis() {
         return System.currentTimeMillis() - startTime;
     }
 
-    public boolean isRescueValid(RescueType rescueType) {
-        if (pageStack.peek().useHelp(rescueType) > 0) return true;
-        switch (rescueType) {
-            case SHOW_LINKS_ONLY:
-                if (gameConfig.numOfShowLinksOnly == 0) return false;
-                if (gameConfig.numOfShowLinksOnly != UNLIMITED)
-                    gameConfig.numOfShowLinksOnly--;
-                break;
-            case FIND_IN_TEXT:
-                if (gameConfig.numOfFindInText == 0) return false;
-                if (gameConfig.numOfFindInText != UNLIMITED) gameConfig.numOfFindInText--;
-                break;
-            case GO_BACK:
-                if (gameConfig.numOnReturns == 0) return false;
-                if (gameConfig.numOnReturns != UNLIMITED) gameConfig.numOnReturns--;
-                break;
-        }
-        return true;
-    }
-
     public void failed() {
         onGameFinished(false, createPagesSummaryList());
     }
-
-
-    /**
-     * This method will be invoked when the game is finished.
-     */
-    protected abstract void onGameFinished(boolean success, List<Page.PageSummary> pageSummaryList);
 
 
     private List<Page.PageSummary> createPagesSummaryList() {
@@ -179,6 +186,30 @@ abstract public class Game {
         }
         return list;
     }
+
+
+    /**
+     * This method will be invoked when the game is finished.
+     */
+    protected abstract void onGameFinished(boolean success, List<Page.PageSummary> pageSummaryList);
+
+
+    /**
+     * This method will be invoked on each rescue use and needs to be overridden to handle.
+     *
+     * @param rescueType The rescue that was used.
+     * @param amountLeft How many more rescues are left.
+     */
+    protected abstract void onRescueUseSuccess(RescueType rescueType, int amountLeft);
+
+
+    /**
+     * This method will be invoked when a rescue couldn't be used successfully and the reason why.
+     *
+     * @param rescueType the rescue that failed
+     * @param reason     why it failed.
+     */
+    protected abstract void onRescueUseFailed(RescueType rescueType, CharSequence reason);
 
 
 }

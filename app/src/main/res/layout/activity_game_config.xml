@@ -14,8 +14,16 @@
             type="com.oog.thewikigame.models.IconButtonModel" />
 
         <variable
+            name="languageTwoLinePopupModel"
+            type="com.oog.thewikigame.models.TwoLinePopupModel" />
+
+        <variable
             name="timeLimitTwoLineSwitchModel"
             type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+
+        <variable
+            name="expandIconButtonModel"
+            type="com.oog.thewikigame.models.IconButtonModel" />
 
         <variable
             name="findInTextTwoLineSwitchModel"
@@ -140,56 +148,82 @@
 
                 <!--                Configuration Card-->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/game_config_card_expandable_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    app:cardElevation="2dp"
-                    android:id="@+id/cardview_expandable"
-                    >
+
+                    app:cardElevation="2dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <LinearLayout
+                            android:id="@+id/game_config_layout_configuration_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_margin="8dp"
+                                android:contentDescription="Configuration"
+                                android:src="@drawable/ic_baseline_tune_24" />
 
                             <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="Configuration"
-                                android:id="@+id/showconfig"
-                                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                                />
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
+                            <FrameLayout
+                                android:id="@+id/game_config_icon_button_expand_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <include
+                                    layout="@layout/material_icon_button_flat"
+                                    app:iconButtonModel="@{expandIconButtonModel}" />
+                            </FrameLayout>
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/game_config_layout_expandable_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="visible"
-                            android:id="@+id/expandable_view"
                             android:layout_margin="10dp"
                             android:orientation="vertical"
-                            >
+                            android:visibility="visible">
+
+
                             <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
-                            <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
-                            <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
-                            <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                                layout="@layout/list_item_two_line_text_popup"
+                                app:twoLinePopupModel="@{languageTwoLinePopupModel}"/>
+
                             <include
                                 layout="@layout/list_item_two_line_switch"
                                 app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
 
+                            <include
+                                layout="@layout/list_item_two_line_switch"
+                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
 
+                            <include
+                                layout="@layout/list_item_two_line_switch"
+                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+
+                            <include
+                                layout="@layout/list_item_two_line_switch"
+                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+
+                            <include
+                                layout="@layout/list_item_two_line_switch"
+                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
 
 
                         </LinearLayout>

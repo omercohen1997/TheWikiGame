@@ -24,12 +24,16 @@ public class SharedPreferencesWrapper {
         USER,
     }
 
-    public SharedPreferencesWrapper(Context context, Preference preference) {
+    public static SharedPreferencesWrapper make(Context context,Preference preference){
+        return new SharedPreferencesWrapper(context,preference);
+    }
+
+    private SharedPreferencesWrapper(Context context, Preference preference) {
         this.context= context;
         this.preference = preference;
     }
 
-    private static SharedPreferences getSharedPreference(Context context,Preference preference){
+    private SharedPreferences getSharedPreference(){
         switch (preference) {
             case SETTINGS:
                 return context.getSharedPreferences(SETTINGS,Context.MODE_PRIVATE);
@@ -42,18 +46,29 @@ public class SharedPreferencesWrapper {
     }
 
     public String getString(String key, String defValue) {
-        return getString(context,preference,key,defValue);
+        return Objects.requireNonNull(getSharedPreference()).getString(key,defValue);
     }
 
     public void putString(String key, String value) {
-        putString(context,preference,key,value);
+        Objects.requireNonNull(getSharedPreference()).edit().putString(key,value).apply();
     }
 
-    public static String getString(Context context,Preference preference,String key, String defValue){
-        return Objects.requireNonNull(getSharedPreference(context, preference)).getString(key,defValue);
+    public long getLong(String key,long defValue){
+        return Objects.requireNonNull(getSharedPreference()).getLong(key,defValue);
     }
 
-    public static void putString(Context context,Preference preference,String key,String value){
-        Objects.requireNonNull(getSharedPreference(context, preference)).edit().putString(key,value).apply();
+    public void putLong(String key,long value){
+        Objects.requireNonNull(getSharedPreference()).edit().putLong(key,value).apply();
     }
+
+
+    public long getInt(String key,int defValue){
+        return Objects.requireNonNull(getSharedPreference()).getInt(key,defValue);
+    }
+
+    public void putInt(String key,int value){
+        Objects.requireNonNull(getSharedPreference()).edit().putInt(key,value).apply();
+    }
+
+
 }

@@ -9,14 +9,14 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/game_menu_find_id"
+        android:id="@+id/game_menu_find_in_text_id"
         android:icon="@drawable/ic_baseline_find_in_page_24"
         android:title="@string/game_find_in_text"
         app:showAsAction="always"
         />
 
     <item
-        android:id="@+id/game_menu_hide_text_id"
+        android:id="@+id/game_menu_show_links_only_id"
         android:icon="@drawable/ic_outline_manage_search_24"
         android:title="@string/game_find_in_text"
         app:showAsAction="always"
