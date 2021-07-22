@@ -4,7 +4,7 @@
     <data>
 
         <variable
-            name="twoLinePopupModel"
+            name="model"
             type="com.oog.thewikigame.models.TwoLinePopupModel" />
     </data>
 
@@ -28,7 +28,7 @@
                 android:paddingStart="16dp"
                 android:paddingTop="16dp"
                 android:paddingEnd="8dp"
-                android:text="@{twoLinePopupModel.primaryText}"
+                android:text="@{model.primaryText}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -39,7 +39,7 @@
                 android:maxLines="2"
                 android:paddingStart="16dp"
                 android:paddingEnd="8dp"
-                android:text="@{twoLinePopupModel.secondaryText}"
+                android:text="@{model.secondaryText}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
         </LinearLayout>
 
@@ -50,7 +50,7 @@
 
             <AutoCompleteTextView
                 android:id="@+id/list_item_two_line_text_popup_selection_id"
-                values="@{twoLinePopupModel.values}"
+                values="@{model.values}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

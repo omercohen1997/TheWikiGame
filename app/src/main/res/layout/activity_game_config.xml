@@ -14,12 +14,16 @@
             type="com.oog.thewikigame.models.IconButtonModel" />
 
         <variable
-            name="languageTwoLinePopupModel"
+            name="languageSelectModel"
             type="com.oog.thewikigame.models.TwoLinePopupModel" />
 
         <variable
-            name="timeLimitTwoLineSwitchModel"
-            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+            name="timeLimitModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchTextFieldModel" />
+
+        <variable
+            name="jumpLimitModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchTextFieldModel" />
 
         <variable
             name="expandIconButtonModel"
@@ -99,7 +103,7 @@
 
                         <include
                             layout="@layout/material_icon_button_flat"
-                            app:iconButtonModel="@{startArticleIconButtonModel}" />
+                            app:model="@{startArticleIconButtonModel}" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -141,7 +145,7 @@
 
                         <include
                             layout="@layout/material_icon_button_flat"
-                            app:iconButtonModel="@{startArticleIconButtonModel}" />
+                            app:model="@{startArticleIconButtonModel}" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -186,9 +190,10 @@
                                 android:id="@+id/game_config_icon_button_expand_id"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
+
                                 <include
                                     layout="@layout/material_icon_button_flat"
-                                    app:iconButtonModel="@{expandIconButtonModel}" />
+                                    app:model="@{expandIconButtonModel}" />
                             </FrameLayout>
                         </LinearLayout>
 
@@ -203,27 +208,39 @@
 
                             <include
                                 layout="@layout/list_item_two_line_text_popup"
-                                app:twoLinePopupModel="@{languageTwoLinePopupModel}"/>
+                                app:model="@{languageSelectModel}" />
+
+                            <View
+                                style="@style/Divider"
+                                android:layout_margin="8dp" />
 
                             <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                                layout="@layout/list_item_two_line_text_switch"
+                                app:model="@{timeLimitModel}" />
 
                             <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                                layout="@layout/list_item_two_line_text_switch"
+                                app:model="@{jumpLimitModel}" />
 
-                            <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                            <View
+                                style="@style/Divider"
+                                android:layout_marginHorizontal="8dp" />
 
-                            <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                            <!--                            <include-->
+                            <!--                                layout="@layout/list_item_two_line_switch"-->
+                            <!--                                app:twoLineSwitchTextFieldModel="@{timeLimitTwoLineTextSwitchModel}" />-->
 
-                            <include
-                                layout="@layout/list_item_two_line_switch"
-                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />
+                            <!--                            <include-->
+                            <!--                                layout="@layout/list_item_two_line_switch"-->
+                            <!--                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />-->
+
+                            <!--                            <include-->
+                            <!--                                layout="@layout/list_item_two_line_switch"-->
+                            <!--                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />-->
+
+                            <!--                            <include-->
+                            <!--                                layout="@layout/list_item_two_line_switch"-->
+                            <!--                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />-->
 
 
                         </LinearLayout>

@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="twoLineIconButtonModel"
+            name="model"
             type="com.oog.thewikigame.models.TwoLineIconButtonModel" />
     </data>
 
@@ -33,7 +33,7 @@
                 android:paddingStart="16dp"
                 android:paddingTop="16dp"
                 android:paddingEnd="8dp"
-                android:text="@{twoLineIconButtonModel.primaryText}"
+                android:text="@{model.primaryText}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -43,13 +43,13 @@
                 android:maxLines="2"
                 android:paddingStart="16dp"
                 android:paddingEnd="8dp"
-                android:text="@{twoLineIconButtonModel.secondaryText}"
+                android:text="@{model.secondaryText}"
                 android:textAppearance="?attr/textAppearanceBody2" />
 
         </LinearLayout>
 
         <include
             layout="@layout/material_icon_button_flat"
-            app:iconButtonModel="@{twoLineIconButtonModel.iconButtonModel}" />
+            app:model="@{model.iconButtonModel}" />
     </LinearLayout>
 </layout>

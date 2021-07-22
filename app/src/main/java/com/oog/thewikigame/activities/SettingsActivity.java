@@ -69,13 +69,12 @@ public class SettingsActivity extends AppCompatActivity {
     private void initSoundsSwitch() {
         TwoLineSwitchModel soundsModel = new TwoLineSwitchModel(this,
                 R.string.settings_text_sounds,
-                R.string.settings_text_sounds_description) {
-            @Override
-            public void onToggle(boolean checked) {
+                R.string.settings_text_sounds_description) {{
+            this.setOnToggleListener(checked -> {
                 //TODO: Add Sound toggle Logic.
                 Logger.log(LogTag.SETTINGS_ACTIVITY, "Toggled sounds", checked ? "on" : "off");
-            }
-        };
+            });
+        }};
         binding.setSounds(soundsModel);
     }
 

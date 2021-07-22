@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="twoLineSwitchModel"
-            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+            name="model"
+            type="com.oog.thewikigame.models.TwoLineSwitchTextFieldModel" />
     </data>
 
     <LinearLayout
@@ -34,7 +34,7 @@
                     android:paddingStart="16dp"
                     android:paddingTop="16dp"
                     android:paddingEnd="8dp"
-                    android:text="@{twoLineSwitchModel.primaryText}"
+                    android:text="@{model.primaryText}"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -45,7 +45,7 @@
                     android:maxLines="2"
                     android:paddingStart="16dp"
                     android:paddingEnd="8dp"
-                    android:text="@{twoLineSwitchModel.secondaryText}"
+                    android:text="@{model.secondaryText}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
             </LinearLayout>
 
@@ -54,22 +54,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:checked="@={twoLineSwitchModel.checked}"
+                android:checked="@={model.checked}"
                 android:paddingStart="8dp"
                 android:paddingEnd="16dp" />
         </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:hint="@{model.hint}"
+            android:visibility="@{model.checked}"
+
             >
 
 
             <com.google.android.material.textfield.TextInputEditText
+
+                inputType="@{model.inputType}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="setText"
-                />
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>

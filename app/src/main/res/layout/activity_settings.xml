@@ -56,14 +56,14 @@
                     layout="@layout/list_item_two_line_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:twoLineSwitchModel="@{sounds}" />
+                    app:model="@{sounds}" />
 
                 <include
                     android:id="@+id/settings_theme_item_id"
                     layout="@layout/list_item_two_line_icon_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:twoLineIconButtonModel="@{theme}" />
+                    app:model="@{theme}" />
 
                 <View
                     style="@style/Divider"
@@ -75,7 +75,7 @@
                     layout="@layout/list_item_two_line_icon_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:twoLineIconButtonModel="@{language}" />
+                    app:model="@{language}" />
 
                 <View
                     style="@style/Divider"

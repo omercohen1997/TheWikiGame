@@ -8,5 +8,6 @@ public enum LogTag {
     HTTP_EXCEPTION,
     HANDLERS,
     SETTINGS_ACTIVITY,
-    EXCEPTION
+    EXCEPTION,
+    TEMP_DEBUG
 }
