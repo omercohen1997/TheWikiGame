@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.oog.thewikigame.R;
 import com.oog.thewikigame.databinding.ActivityAboutBinding;
-import com.oog.thewikigame.databinding.ActivityGameDetailBinding;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -66,7 +65,5 @@ public class AboutActivity extends AppCompatActivity {
         expandableOmerCohen = findViewById(R.id.expandable_view_for_cohen);
         textViewOmerCohen = findViewById(R.id.omerCohen);
         cardViewOmerCohen = findViewById(R.id.cardview_expandable_for_cohen);
-
-
     }
 }

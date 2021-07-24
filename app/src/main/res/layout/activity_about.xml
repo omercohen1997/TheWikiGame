@@ -54,13 +54,22 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="add description here"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+                    android:text="@string/about_text_description_title"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:padding="8dp"
+                    />
+
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Creators"
+                    android:text="@string/about_text_detailed_description"
+                    android:textAlignment="center"
+                    android:padding="16dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_text_authors"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_margin="12dp"/>
@@ -75,7 +84,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="16dp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -84,7 +94,7 @@
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Omer Gez"
+                                android:text="@string/about_text_omer_gez"
                                 android:id="@+id/omerGez"
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                                 />
@@ -94,7 +104,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             android:id="@+id/expandable_view_for_gez"
                             android:layout_margin="10dp"
                             android:orientation="vertical"
@@ -102,13 +112,32 @@
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Email - omergez72@gmail.com"
+                                android:text="Email"
+
                                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="LinkedIn - https://www.linkedin.com/in/omer-gez-004b931b0/"
+                                android:text="omergez72@gmail.com"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                                android:autoLink="email"
+                                />
+                            <View
+                                style="@style/Divider"
+                                android:layout_width="match_parent"
+                                android:layout_margin="8dp"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="LinkedIn"
                                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="https://www.linkedin.com/in/omer-gez-004b931b0/"
+                                android:autoLink="web"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"/>
 
                         </LinearLayout>
 
@@ -127,7 +156,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="16dp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -136,7 +166,7 @@
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Guy Tsitsiashvili"
+                                android:text="@string/about_text_guy_tsitsiashvili"
                                 android:id="@+id/guy"
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                                 />
@@ -146,7 +176,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             android:id="@+id/expandable_view_for_guy"
                             android:layout_margin="10dp"
                             android:orientation="vertical"
@@ -154,13 +184,31 @@
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Email - guygool4@gmail.com"
+                                android:text="Email"
                                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="LinkedIn - https://www.linkedin.com/in/guygool5/"
+                                android:text="guygool4@gmail.com"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                                android:autoLink="email"/>
+
+                            <View
+                                style="@style/Divider"
+                                android:layout_width="match_parent"
+                                android:layout_margin="8dp"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="LinkedIn"
                                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="https://www.linkedin.com/in/guygool5/"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                                android:autoLink="web"/>
 
                         </LinearLayout>
 
@@ -179,7 +227,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="16dp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -188,7 +237,7 @@
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Omer Cohen"
+                                android:text="@string/about_text_omer_cohen"
                                 android:id="@+id/omerCohen"
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                                 />
@@ -198,7 +247,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             android:id="@+id/expandable_view_for_cohen"
                             android:layout_margin="10dp"
                             android:orientation="vertical"
@@ -206,13 +255,30 @@
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Email - omerc1997@gmail.com"
+                                android:text="Email"
                                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="LinkedIn - https://www.linkedin.com/in/omer-cohen-400583201/"
+                                android:text="omerc1997@gmail.com"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                                android:autoLink="email"/>
+                            <View
+                                style="@style/Divider"
+                                android:layout_width="match_parent"
+                                android:layout_margin="8dp"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="LinkedIn"
                                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="https://www.linkedin.com/in/omer-cohen-400583201/"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                                android:autoLink="web"/>
 
                         </LinearLayout>
 
@@ -225,9 +291,10 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Version - alpha 0.10"
+                    android:text="@string/text_version"
                     android:layout_margin="8dp"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+                    android:textColor="@color/design_default_color_secondary_variant"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
             </LinearLayout>
 
