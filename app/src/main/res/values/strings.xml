@@ -101,5 +101,21 @@
     <string name="game_detail_text_returns">Returns</string>
     <string name="game_detail_text_find_in_text">Find In Text</string>
     <string name="game_detail_text_finished">Finished</string>
+    
+    <!--    About Activity-->
+    <string name="about_text_description_title">Game Description</string>
+    <string name="about_text_detailed_description">
+        The Wiki Game is inspired by the well known "Wiki Challenge",
+        where you get to both play and enrich your knowledge on the Wikipedia platform.
+        The gameplay idea is an association game that gives you a starting article,
+        and through the available links scattered across the article you are on, you can navigate to other articles.
+        The goal is to reach end article you designated with the helps and setbacks you decide on.
+        Challenge yourself and your friends and learn something new everyday!
+    </string>
+    <string name="about_text_authors">Authors</string>
+    <string name="about_text_omer_gez">Omer Gez</string>
+    <string name="about_text_guy_tsitsiashvili">Guy Tsitsiashvili</string>
+    <string name="about_text_omer_cohen">Omer Cohen</string>
+    <string name="about_text_version">Version</string>
 
 </resources>
