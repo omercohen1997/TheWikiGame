@@ -45,6 +45,13 @@
     <string name="game_detail_text_returns">Returns</string>
     <string name="game_detail_text_find_in_text">Find In Text</string>
     <string name="game_detail_text_finished">Finished</string>
+    
+    <!--    About Activity-->
+    <string name="about_text_creators">Creators</string>
+    <string name="about_text_omer_gez">Omer Gez</string>
+    <string name="about_text_guy_tsitsiashvili">Guy Tsitsiashvili</string>
+    <string name="about_text_omer_cohen">Omer Cohen</string>
+    <string name="about_text_version">Version</string>
 
 
 </resources>

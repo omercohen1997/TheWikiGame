@@ -31,4 +31,9 @@
     <string name="game_detail_text_returns">חזרות</string>
     <string name="game_detail_text_find_in_text">למצוא בתוך טקסט</string>
     <string name="game_detail_text_finished">סיים משחק</string>
+    <string name="about_text_creators">יוצרים</string>
+    <string name="about_text_omer_gez">עומר גז</string>
+    <string name="about_text_guy_tsitsiashvili">גיא ציציאשוילי</string>
+    <string name="about_text_omer_cohen">עומר כהן</string>
+    <string name="about_text_version">גרסה</string>
 </resources>

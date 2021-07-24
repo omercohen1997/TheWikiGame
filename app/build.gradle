@@ -41,6 +41,7 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.beigirad:ZigzagView:1.2.0'
 
     implementation 'org.jetbrains:annotations:16.0.2'
     testImplementation 'junit:junit:4.13.2'
