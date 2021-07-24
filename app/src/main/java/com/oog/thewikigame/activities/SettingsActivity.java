@@ -1,8 +1,11 @@
 package com.oog.thewikigame.activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -16,6 +19,7 @@ import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 import com.oog.thewikigame.models.TwoLineSwitchModel;
 import com.oog.thewikigame.databinding.ActivitySettingsBinding;
+import com.oog.thewikigame.wrappers.SharedPreferencesWrapper;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -27,6 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
     LocaleHandler.LocaleCode initialLocaleCode;
     ActivitySettingsBinding binding;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,8 +62,11 @@ public class SettingsActivity extends AppCompatActivity {
         resetAllDataDialogBuilder.setNegativeButton(R.string.text_yes, ((dialogInterface, i) ->
 
         {
-            //TODO: Add reset all data logic.
-            Logger.log(LogTag.SETTINGS_ACTIVITY, "Clicked on Reset all data on dialog.");
+            SharedPreferencesWrapper.make(this, SharedPreferencesWrapper.Preference.SETTINGS).clearAllPreferences();
+            SharedPreferencesWrapper.make(this, SharedPreferencesWrapper.Preference.GAME).clearAllPreferences();
+            SharedPreferencesWrapper.make(this, SharedPreferencesWrapper.Preference.USER).clearAllPreferences();
+            startActivity(new Intent(this,MainActivity.class));
+            Runtime.getRuntime().exit(0);
         }));
 
 

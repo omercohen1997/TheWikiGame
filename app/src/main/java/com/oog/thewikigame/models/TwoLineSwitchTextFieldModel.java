@@ -6,6 +6,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
@@ -20,6 +21,8 @@ public class TwoLineSwitchTextFieldModel extends TwoLineSwitchModel {
 
     private int inputType;
     private CharSequence hint;
+    private String data;
+    private String error;
 
     public TwoLineSwitchTextFieldModel(String primaryTitle, String secondaryTitle) {
         super(primaryTitle, secondaryTitle);
@@ -52,7 +55,6 @@ public class TwoLineSwitchTextFieldModel extends TwoLineSwitchModel {
 
     @BindingAdapter("inputType")
     public static void setInputType(TextInputEditText editText, int inputType) {
-        Logger.log(LogTag.TEMP_DEBUG, "Trying to set input filter:", inputType);
         editText.setInputType(inputType);
     }
 
@@ -62,4 +64,25 @@ public class TwoLineSwitchTextFieldModel extends TwoLineSwitchModel {
         return visible?View.VISIBLE:View.GONE;
     }
 
+    @Bindable
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+        notifyPropertyChanged(BR.data);
+    }
+
+    @Bindable
+    @Nullable
+    public String getError() {
+        return error;
+    }
+
+
+    public void setError(@Nullable String error) {
+        this.error = error;
+        notifyPropertyChanged(BR.error);
+    }
 }

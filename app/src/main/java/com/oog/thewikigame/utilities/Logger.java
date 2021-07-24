@@ -2,6 +2,8 @@ package com.oog.thewikigame.utilities;
 
 import android.util.Log;
 
+import java.util.Arrays;
+
 
 public class Logger {
 
@@ -17,6 +19,11 @@ public class Logger {
             }
         }
         Log.d(tag.toString(), sb.toString());
+    }
+
+    public static <E extends Exception> void log(Exception e){
+        log(LogTag.EXCEPTION,
+                Arrays.toString(e.getStackTrace()));
     }
 
 }

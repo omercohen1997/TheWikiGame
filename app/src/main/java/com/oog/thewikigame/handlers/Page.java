@@ -31,15 +31,21 @@ public class Page {
      * <code>true</code> if already unlocked; <code>false</code> if it's first time unlock.
      */
     public int useHelp(RescueType rescueType) {
+        int current = 0;
         switch (rescueType) {
             case SHOW_LINKS_ONLY:
-                return usedShowLinksOnly++;
+                current = usedShowLinksOnly;
+                usedShowLinksOnly++;
+                break;
             case FIND_IN_TEXT:
-                return usedFindInText++;
+                current = usedFindInText;
+                usedFindInText++;
+                break;
             case GO_BACK:
             default:
-                return 0;
+                break;
         }
+        return current;
     }
 
     /**
@@ -57,7 +63,7 @@ public class Page {
         elapsedTime += endTime - startTime;
     }
 
-    public String getArticle(){
+    public String getArticle() {
         return article;
     }
 

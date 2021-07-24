@@ -13,10 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheWikiGame">
-        <activity android:name=".activities.GameActivity"/>
+        <activity android:name=".activities.ArticlePreviewActivity"></activity>
+        <activity android:name=".activities.GameActivity" />
         <activity android:name=".activities.AboutActivity" />
-        <activity android:name=".activities.GameDetailActivity"/>
-        <activity android:name=".activities.AboutActivity" />
+        <activity android:name=".activities.GameDetailActivity" />
         <activity android:name=".activities.GameRecordsActivity" />
         <activity android:name=".activities.GameConfigActivity" />
         <activity android:name=".activities.SettingsActivity" />

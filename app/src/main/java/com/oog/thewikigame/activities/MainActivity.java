@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        //TODO: Delete this
-        startActivity(new Intent(this,GameConfigActivity.class));
-
-
         settingsActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if (result.getResultCode() == ActivityResultUtil.RESULT_UPDATE){
                 if (!localeCode.equals(LocaleHandler.getSavedLocale(this))) recreate();

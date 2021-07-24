@@ -7,11 +7,9 @@ import androidx.databinding.Bindable;
 
 import com.oog.thewikigame.BR;
 
-import java.util.List;
-
 public class TwoLinePopupModel extends TwoLineModel{
 
-    private List<String> values;
+    private ArrayAdapter<String> adapter;
 
     public TwoLinePopupModel(String primaryTitle, String secondaryTitle) {
         super(primaryTitle, secondaryTitle);
@@ -21,15 +19,19 @@ public class TwoLinePopupModel extends TwoLineModel{
         super(context, primaryTitleRes, secondaryTitleRes);
     }
 
+
+
     @Bindable
-    public List<String> getValues() {
-        return values;
+    public ArrayAdapter<String> getAdapter() {
+        return adapter;
     }
 
-    public void setValues(List<String> values) {
-        this.values = values;
-        notifyPropertyChanged(BR.values);
+
+    public void setAdapter(ArrayAdapter<String> adapter) {
+        this.adapter = adapter;
+        notifyPropertyChanged(BR.adapter);
     }
+
 }
 
 

@@ -1,12 +1,19 @@
 package com.oog.thewikigame.models;
 
-import android.annotation.SuppressLint;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.databinding.BindingAdapter;
 
-import com.oog.thewikigame.R;
+import com.google.android.material.textfield.TextInputLayout;
 import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 
@@ -14,16 +21,29 @@ import java.util.List;
 
 public class BindingAdapters {
 
-    @BindingAdapter("values")
-    public static void setArrayAdapter(AutoCompleteTextView view, List<String> values) {
+    @BindingAdapter("adapter")
+    public static void setAdapter(AutoCompleteTextView view, ArrayAdapter adapter) {
+        view.setAdapter(adapter);
+    }
+
+    @BindingAdapter("android:text")
+    public static void setText(AutoCompleteTextView textView, @StringRes int resId) {
+        String resString = textView.getContext().getString(resId);
+        textView.setText(resString);
+    }
+
+    @BindingAdapter("android:text")
+    public static void setText(AutoCompleteTextView textView, String resId) {
         try {
-            view.setAdapter(new ArrayAdapter<>(view.getContext(),
-                    android.R.layout.simple_list_item_1,
-                    values));
-        } catch (Exception e) {
-            //TODO: Delete this logger.
-            Logger.log(LogTag.EXCEPTION, "At BindingAdapters::setArrayAdapter", e);
+            resId = textView.getContext().getString(Integer.parseInt(resId));
+        } catch (Exception ignored) {
         }
+        textView.setText(resId);
+    }
+
+    @BindingAdapter("error")
+    public static void setError(TextInputLayout textInputLayout, String error){
+        textInputLayout.setError(error);
     }
 
 }

@@ -11,7 +11,7 @@
     <string name="settings_button_reset_settings">איפוס הגדרות</string>
     <string name="settings_dialog_reset_title">איפוס הגדרות</string>
     <string name="settings_dialog_reset_description">פעולה זו תאפס את כל הגדרות האפליקציה ותשחזר אותן למצבן המקורי. האם את/ה בטוח/ה?</string>
-    <string name="text_yes">כן</string>
+    <string name="text_yes">הגבלת קפיצות (מספר)</string>
     <string name="text_no">לא</string>
     <string name="settings_text_language">שפה</string>
     <string name="settings_text_language_description">כרגע מוגדרת כעברית</string>
@@ -28,7 +28,7 @@
     <string name="theme_default">ברירת מחדל מערכת</string>
     <string name="game_find_in_text">מצא בטקסט</string>
     <string name="game_go_back">חזור אחורה</string>
-    <string name="game_exit">יציאה</string>
+    <string name="game_pause">השהה</string>
     <string name="button_cancel">בטל</string>
     <string name="game_button_find">חפש</string>
     <string name="game_detail_text_date">תאריך</string>
@@ -45,4 +45,25 @@
     <string name="game_config_language_french">צרפתית</string>
     <string name="game_config_language_spanish">ספרדית</string>
     <string name="game_config_language_russian">רוסית</string>
+    <string name="game_config_text_time_limit">הגבלת זמן</string>
+    <string name="game_config_text_time_limit_description">מגביל את זמן המשחק</string>
+    <string name="game_config_text_language">שפת המשחק</string>
+    <string name="game_config_text_language_description">השפה של ויקיפדיה</string>
+    <string name="game_config_text_jump_limit">הגבלת קפיצות</string>
+    <string name="game_config_text_jump_limit_description">מגביל את הקפיצות בין לינקים</string>
+    <string name="game_config_hint_time_limit">הגבלת זמן (שניות)</string>
+    <string name="game_config_error_field_empty">לא יכול להיות ריק, אנא מלא או בטל.</string>
+    <string name="game_config_hint_jump_limit">הגבלת קפיצות (מספר)</string>
+    <string name="game_config_text_go_back_limit">הגבלת חזרה אחורה</string>
+    <string name="game_config_text_go_back_limit_description">מגביל את כמות הפעמים שניתן לחזור אחורה</string>
+    <string name="game_config_hint_uses">מספר שימושים</string>
+    <string name="game_config_text_show_links_only_limit">הגבלת הצגת לינקים בלבד</string>
+    <string name="game_config_text_show_links_only_limit_description">מגביל את כמות הפעים שניתן להסתיר את הטקסט למעט לינקים</string>
+    <string name="game_config_text_find_in_text_limit">הגבלת חיפוש בתוף טקסט</string>
+    <string name="game_config_text_find_in_text_limit_description">מגביל את כמות הפעמים שבהן ניתן לחפש בטקסט</string>
+    <string name="game_dialog_exit">יציאה</string>
+    <string name="game_dialog_new_game">משחק חדש</string>
+    <string name="game_dialog_title">מושהה</string>
+    <string name="preview_toolbar_title">תצוגה מקדימה</string>
+    <string name="game_dialog_destination">יעד</string>
 </resources>

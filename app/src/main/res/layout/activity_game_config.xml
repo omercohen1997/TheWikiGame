@@ -10,8 +10,29 @@
             type="String" />
 
         <variable
+            name="endArticleString"
+            type="String"/>
+
+        <variable
+            name="playButtonLock"
+            type="boolean" />
+
+        <variable
             name="startArticleIconButtonModel"
             type="com.oog.thewikigame.models.IconButtonModel" />
+        <variable
+            name="endArticleIconButtonModel"
+            type="com.oog.thewikigame.models.IconButtonModel" />
+
+        <variable
+            name="expandIconButtonModel"
+            type="com.oog.thewikigame.models.IconButtonModel" />
+
+        <variable
+            name="findInTextTwoLineSwitchModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+
+        <!--        Game Configuration models-->
 
         <variable
             name="languageSelectModel"
@@ -26,12 +47,17 @@
             type="com.oog.thewikigame.models.TwoLineSwitchTextFieldModel" />
 
         <variable
-            name="expandIconButtonModel"
-            type="com.oog.thewikigame.models.IconButtonModel" />
+            name="goBackLimitModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchTextFieldModel" />
 
         <variable
-            name="findInTextTwoLineSwitchModel"
-            type="com.oog.thewikigame.models.TwoLineSwitchModel" />
+            name="showLinksOnlyLimitModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchTextFieldModel" />
+
+        <variable
+            name="findInTextLimitModel"
+            type="com.oog.thewikigame.models.TwoLineSwitchTextFieldModel" />
+
 
     </data>
 
@@ -40,12 +66,12 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/settings_appbar_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/play_appbar_toolbar_id"
+                android:id="@+id/game_config_toolbar_id"
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -140,12 +166,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:enabled="false"
-                                android:text="@{startArticleString}" />
+                                android:text="@{endArticleString}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <include
                             layout="@layout/material_icon_button_flat"
-                            app:model="@{startArticleIconButtonModel}" />
+                            app:model="@{endArticleIconButtonModel}" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -207,6 +233,7 @@
 
 
                             <include
+                                android:id="@+id/game_config_layout_language_id"
                                 layout="@layout/list_item_two_line_text_popup"
                                 app:model="@{languageSelectModel}" />
 
@@ -215,32 +242,45 @@
                                 android:layout_margin="8dp" />
 
                             <include
+                                android:id="@+id/game_config_layout_time_limit_id"
                                 layout="@layout/list_item_two_line_text_switch"
                                 app:model="@{timeLimitModel}" />
 
+                            <View
+                                style="@style/Divider"
+                                android:layout_margin="8dp" />
+
                             <include
+                                android:id="@+id/game_config_layout_jump_limit_id"
                                 layout="@layout/list_item_two_line_text_switch"
                                 app:model="@{jumpLimitModel}" />
 
                             <View
                                 style="@style/Divider"
-                                android:layout_marginHorizontal="8dp" />
+                                android:layout_margin="8dp" />
 
-                            <!--                            <include-->
-                            <!--                                layout="@layout/list_item_two_line_switch"-->
-                            <!--                                app:twoLineSwitchTextFieldModel="@{timeLimitTwoLineTextSwitchModel}" />-->
+                            <include
+                                android:id="@+id/game_config_layout_go_back_limit_id"
+                                layout="@layout/list_item_two_line_text_switch"
+                                app:model="@{goBackLimitModel}" />
 
-                            <!--                            <include-->
-                            <!--                                layout="@layout/list_item_two_line_switch"-->
-                            <!--                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />-->
+                            <View
+                                style="@style/Divider"
+                                android:layout_margin="8dp" />
 
-                            <!--                            <include-->
-                            <!--                                layout="@layout/list_item_two_line_switch"-->
-                            <!--                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />-->
+                            <include
+                                android:id="@+id/game_config_layout_show_links_only_limit_id"
+                                layout="@layout/list_item_two_line_text_switch"
+                                app:model="@{showLinksOnlyLimitModel}" />
 
-                            <!--                            <include-->
-                            <!--                                layout="@layout/list_item_two_line_switch"-->
-                            <!--                                app:twoLineSwitchModel="@{timeLimitTwoLineSwitchModel}" />-->
+                            <View
+                                style="@style/Divider"
+                                android:layout_margin="8dp" />
+
+                            <include
+                                android:id="@+id/game_config_layout_find_in_text_limit_id"
+                                layout="@layout/list_item_two_line_text_switch"
+                                app:model="@{findInTextLimitModel}" />
 
 
                         </LinearLayout>
@@ -251,9 +291,13 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <Button
+                    android:id="@+id/game_config_button_play_id"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="I Work" />
+                    android:layout_margin="8dp"
+                    android:enabled="@{playButtonLock}"
+                    android:text="@string/main_button_play" />
 
             </LinearLayout>
 

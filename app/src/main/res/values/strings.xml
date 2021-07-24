@@ -22,6 +22,9 @@
     <string name="main_button_about">About</string>
 
     <!--    Game Configuration Activity-->
+    <!--    Language-->
+    <string name="game_config_text_language">Game Language</string>
+    <string name="game_config_text_language_description">The language of Wikipedia</string>
     <string name="game_config_text_start_article">Start Article</string>
     <string name="game_config_text_end_article">End Article</string>
     <string name="game_config_language_english">English</string>
@@ -32,12 +35,46 @@
     <string name="game_config_language_spanish">Spanish</string>
 
 
+    <!--    Time Limit-->
+    <string name="game_config_text_time_limit">Time Limit</string>
+    <string name="game_config_text_time_limit_description">Limits the game time</string>
+    <string name="game_config_hint_time_limit">Time Limit (seconds)</string>
+
+    <!--    Jump Limit-->
+    <string name="game_config_text_jump_limit">Jump Limit</string>
+    <string name="game_config_text_jump_limit_description">Limits the jumps between links</string>
+    <string name="game_config_hint_jump_limit">Jump Limit (number)</string>
+
+    <!--    Go Back Limit-->
+    <string name="game_config_text_go_back_limit">Go Back Limit</string>
+    <string name="game_config_text_go_back_limit_description">Limits the times you can return back</string>
+
+    <!--    Show Links Only Limit-->
+    <string name="game_config_text_show_links_only_limit">Show Links Only Limit</string>
+    <string name="game_config_text_show_links_only_limit_description">Limits the times you can hide text except links</string>
+
+    <!--    Find In Text Limit-->
+    <string name="game_config_text_find_in_text_limit">Find In Text Limit</string>
+    <string name="game_config_text_find_in_text_limit_description">Limits the times you find in text</string>
+
+    <string name="game_config_error_field_empty">Can\'t be empty, either fill or disable.</string>
+    <string name="game_config_hint_uses">Number of uses</string>
+
+
+
+    <!--    Preview Activity-->
+    <string name="preview_toolbar_title">Preview</string>
 
     <!--    Game Activity-->
     <string name="game_find_in_text">Find in text</string>
     <string name="game_go_back">Go back</string>
-    <string name="game_exit">Exit</string>
+    <string name="game_pause">Pause</string>
     <string name="game_button_find">Find</string>
+    <string name="game_dialog_exit">Exit</string>
+    <string name="game_dialog_destination">Destination</string>
+    <string name="game_dialog_new_game">New Game</string>
+    <string name="game_dialog_title">Paused</string>
+
 
 
     <!--    Settings Activity-->

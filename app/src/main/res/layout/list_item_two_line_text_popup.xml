@@ -44,17 +44,20 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/list_item_two_line_text_popup_selection_id"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <AutoCompleteTextView
-                android:id="@+id/list_item_two_line_text_popup_selection_id"
-                values="@{model.values}"
+                android:id="@+id/list_item_two_line_text_popup_auto_complete_text_view_id"
+                adapter="@{model.adapter}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:inputType="none" />
+                android:inputType="none"
+                android:labelFor="@id/list_item_two_line_text_popup_selection_id"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>

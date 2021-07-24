@@ -33,10 +33,10 @@ abstract public class WebViewHandler {
     abstract public void onLoadedArticle(String article);
 
     /**
-     * This method returns the string reference for each language
+     * This method returns the string reference for each gameLanguage
      *
-     * @param lang the language to get
-     * @return a string value for the given language.
+     * @param lang the gameLanguage to get
+     * @return a string value for the given gameLanguage.
      */
     private static String getLanguage(GameLanguage lang) {
         switch (lang) {
@@ -58,8 +58,8 @@ abstract public class WebViewHandler {
 
     //The WebView this class handles
     private final WebView webView;
-    //The language of the wikipedia pages
-    private final GameLanguage language;
+    //The gameLanguage of the wikipedia pages
+    private final GameLanguage gameLanguage;
     //The current loaded url.
 
     private final boolean darkMode;
@@ -71,11 +71,11 @@ abstract public class WebViewHandler {
      * It will also handle all the web interactions including navigation, page handling and alerting errors.
      *
      * @param webView  The view to hold and manipulate
-     * @param lang     The language of the wikipedia game.
+     * @param lang     The gameLanguage of the wikipedia game.
      */
     @SuppressLint("SetJavaScriptEnabled")
     public WebViewHandler(@NotNull WebView webView, GameLanguage lang) {
-        this.language = lang;
+        this.gameLanguage = lang;
         this.webView = webView;
         this.darkMode = ThemeHandler.isDarkTheme(webView.getContext());
         WebViewClient mainClient = new WebViewClient() {
@@ -90,7 +90,7 @@ abstract public class WebViewHandler {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                String validURLPrefix = constructURL(null, language);
+                String validURLPrefix = constructURL(null, gameLanguage);
                 String currentURL = constructURL(currentArticle);
 
                 String newURL = request.getUrl().toString();
@@ -129,7 +129,7 @@ abstract public class WebViewHandler {
      * Loads a wikipedia article to the WebView.
      *
      * @param article The article endpoint to load
-     * @param lang    The language of the article
+     * @param lang    The gameLanguage of the article
      */
     public void loadArticle(String article, GameLanguage lang) {
         currentArticle = article;
@@ -138,7 +138,7 @@ abstract public class WebViewHandler {
     }
 
     /**
-     * Loads a wikipedia article to the WebView with a default language of English.
+     * Loads a wikipedia article to the WebView with a default gameLanguage of English.
      *
      * @param article The article endpoint to load
      */
@@ -150,7 +150,7 @@ abstract public class WebViewHandler {
      * This method will construct a wikipedia friendly url with the given params
      *
      * @param article the article endpoint
-     * @param lang    the language of the page
+     * @param lang    the gameLanguage of the page
      * @return the formatted url of the article.
      */
     public static @NotNull String constructURL(String article, GameLanguage lang) {

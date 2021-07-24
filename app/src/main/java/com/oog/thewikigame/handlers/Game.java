@@ -2,8 +2,6 @@ package com.oog.thewikigame.handlers;
 
 import android.webkit.WebView;
 
-import androidx.annotation.Nullable;
-
 import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 
@@ -18,32 +16,33 @@ abstract public class Game {
 
     private final Stack<Page> pageStack = new Stack<>();
     private final WebViewHandler webViewHandler;
-    private final long startTime = System.currentTimeMillis();
+    private long startTime = System.currentTimeMillis() / 1000;
+    private long pauseTime = 0;
     private final GameConfig gameConfig;
 
 
     public static class GameConfig implements Serializable {
         private final String startArticle;
         private final String endArticle;
-        private final GameLanguage language;
+        private final GameLanguage gameLanguage;
+        private final int timeLimit;
         private final int numOfJumps;
         private int numOfGoBack;
         private int numOfFindInText;
         private int numOfShowLinksOnly;
-        private final long timeLimit;
 
 
         public GameConfig(String startArticle,
                           String endArticle,
-                          GameLanguage language,
+                          GameLanguage gameLanguage,
                           int numOfJumps,
                           int numOfGoBack,
                           int numOfFindInText,
                           int numOfShowLinksOnly,
-                          long timeLimit) {
+                          int timeLimit) {
             this.startArticle = startArticle;
             this.endArticle = endArticle;
-            this.language = language;
+            this.gameLanguage = gameLanguage;
             this.numOfJumps = numOfJumps;
             this.numOfGoBack = numOfGoBack;
             this.numOfFindInText = numOfFindInText;
@@ -76,32 +75,51 @@ abstract public class Game {
             return numOfShowLinksOnly;
         }
 
-        public long getTimeLimit() {
+        public int getTimeLimitSeconds() {
             return timeLimit;
         }
 
         public GameLanguage getLanguage() {
-            return language;
+            return gameLanguage;
         }
+
+        @Override
+        public String toString() {
+            return "GameConfig{" +
+                    "startArticle='" + startArticle + '\'' +
+                    ", endArticle='" + endArticle + '\'' +
+                    ", gameLanguage=" + gameLanguage +
+                    ", timeLimit=" + timeLimit +
+                    ", numOfJumps=" + numOfJumps +
+                    ", numOfGoBack=" + numOfGoBack +
+                    ", numOfFindInText=" + numOfFindInText +
+                    ", numOfShowLinksOnly=" + numOfShowLinksOnly +
+                    '}';
+        }
+
     }
 
 
-    public Game(WebView webView, String startArticle, String endArticle, GameConfig gameConfig) {
-        webViewHandler = new WebViewHandler(webView) {
+    public Game(WebView webView, GameConfig gameConfig) {
+        webViewHandler = new WebViewHandler(webView, gameConfig.gameLanguage) {
             @Override
             public void onLoadedArticle(String article) {
                 Logger.log(LogTag.HANDLERS, "Received next article from WebViewHandler:", article);
-                pageStack.peek().exit();
+                getPage().exit();
                 pushNewPage(article);
-                if (article.equals(endArticle)) {
-                    pageStack.peek().exit();
+                if (gameConfig.getNumOfJumps() != UNLIMITED && pageStack.size() > gameConfig.getNumOfJumps()) {
+                    failed();
+                    return;
+                }
+                if (article.equals(gameConfig.endArticle)) {
+                    getPage().exit();
                     onGameFinished(true, createPagesSummaryList());
                 }
             }
         };
         this.gameConfig = gameConfig;
-        pushNewPage(startArticle);
-        webViewHandler.loadArticle(startArticle);
+        pushNewPage(gameConfig.startArticle);
+        webViewHandler.loadArticle(gameConfig.startArticle);
     }
 
     /**
@@ -128,7 +146,7 @@ abstract public class Game {
 
 
     public void useFindInText(String text) {
-        if (getPage().useHelp(RescueType.FIND_IN_TEXT) == 0 || gameConfig.numOfFindInText != UNLIMITED) {
+        if (getPage().useHelp(RescueType.FIND_IN_TEXT) == 0 && gameConfig.numOfFindInText != UNLIMITED) {
             if (gameConfig.numOfFindInText == 0) {
                 onRescueUseFailed(RescueType.FIND_IN_TEXT, "No more show links only rescues.");
                 return;
@@ -136,7 +154,7 @@ abstract public class Game {
             gameConfig.numOfFindInText--;
         }
         webViewHandler.find(text);
-        onRescueUseSuccess(RescueType.FIND_IN_TEXT,gameConfig.getNumOfFindInText());
+        onRescueUseSuccess(RescueType.FIND_IN_TEXT, gameConfig.getNumOfFindInText());
     }
 
     public void useGoBack() {
@@ -144,13 +162,12 @@ abstract public class Game {
             onRescueUseFailed(RescueType.GO_BACK, "First article; nowhere to go back.");
             return;
         }
-        if (getPage().useHelp(RescueType.GO_BACK) == 0) {
-            if (gameConfig.numOfGoBack == 0) {
-                onRescueUseFailed(RescueType.GO_BACK, "No more go back rescues.");
-                return;
-            }
-            if (gameConfig.numOfGoBack != UNLIMITED) gameConfig.numOfGoBack--;
+        if (gameConfig.numOfGoBack == 0) {
+            onRescueUseFailed(RescueType.GO_BACK, "No more go back rescues.");
+            return;
         }
+        if (gameConfig.numOfGoBack != UNLIMITED) gameConfig.numOfGoBack--;
+
         pageStack.pop();
         getPage().enter();
         webViewHandler.loadArticle(getPage().getArticle());
@@ -158,20 +175,33 @@ abstract public class Game {
     }
 
     public void toggleShowLinksOnly() {
-        if (getPage().useHelp(RescueType.SHOW_LINKS_ONLY) == 0) {
+        if (getPage().useHelp(RescueType.SHOW_LINKS_ONLY) == 0 && gameConfig.numOfShowLinksOnly != UNLIMITED) {
             if (gameConfig.numOfShowLinksOnly == 0) {
                 onRescueUseFailed(RescueType.SHOW_LINKS_ONLY, "No more show links only rescues.");
                 return;
             }
-            if (gameConfig.numOfShowLinksOnly != UNLIMITED)
-                gameConfig.numOfShowLinksOnly--;
+            gameConfig.numOfShowLinksOnly--;
         }
         webViewHandler.toggleText();
         onRescueUseSuccess(RescueType.SHOW_LINKS_ONLY, gameConfig.getNumOfShowLinksOnly());
     }
 
-    public long getTimeElapsedMillis() {
-        return System.currentTimeMillis() - startTime;
+    public void pause() {
+        if (pauseTime == 0)
+            pauseTime = System.currentTimeMillis() / 1000;
+    }
+
+    public void resume() {
+        if (pauseTime != 0) {
+            startTime += System.currentTimeMillis() / 1000 - pauseTime;
+            pauseTime = 0;
+        }
+    }
+
+    public long getTimeElapsedSeconds() {
+        if (pauseTime != 0)
+            return pauseTime - startTime;
+        return System.currentTimeMillis() / 1000 - startTime;
     }
 
     public void failed() {
@@ -189,7 +219,10 @@ abstract public class Game {
 
 
     /**
-     * This method will be invoked when the game is finished.
+     * This method will be invoked when the game is done.
+     *
+     * @param success         {@code true} if the game finished successfully, {@code false} otherwise.
+     * @param pageSummaryList a list of all the visited pages (except returns) and their stats.
      */
     protected abstract void onGameFinished(boolean success, List<Page.PageSummary> pageSummaryList);
 

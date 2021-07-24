@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -17,13 +17,16 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.oog.thewikigame.R;
 import com.oog.thewikigame.databinding.ActivityGameBinding;
+import com.oog.thewikigame.databinding.DialogPauseMenuBinding;
 import com.oog.thewikigame.handlers.Game;
 import com.oog.thewikigame.handlers.Page;
 import com.oog.thewikigame.handlers.RescueType;
+import com.oog.thewikigame.models.IconButtonModel;
 import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 //TODO: Implement Exit.
@@ -40,8 +43,6 @@ public class GameActivity extends AppCompatActivity {
     BadgeDrawable goBackBadge;
     BadgeDrawable showLinksOnlyBadge;
     BadgeDrawable findInTextBadge;
-
-    boolean isRunning = false;
 
 
     @SuppressLint("UnsafeExperimentalUsageError") //BadgeDrawable is experimental
@@ -66,11 +67,22 @@ public class GameActivity extends AppCompatActivity {
         goBackBadge = BadgeDrawable.create(this);
         showLinksOnlyBadge = BadgeDrawable.create(this);
         findInTextBadge = BadgeDrawable.create(this);
-        game = new Game(binding.gameWebView, "Son_Goku", "Monkey_King", gameConfig) {
+        game = new Game(binding.gameWebView, gameConfig) {
+
             @Override
             protected void onGameFinished(boolean success, List<Page.PageSummary> pageSummaryList) {
+                MaterialAlertDialogBuilder finishDialog = new MaterialAlertDialogBuilder(binding.getRoot().getContext());
+                finishDialog.setTitle(success?"Good Job":"Failed");
+                StringBuilder sb=new StringBuilder();
+                sb.append("[--START--]\n");
                 for (Page.PageSummary pageSummary : pageSummaryList)
-                    Logger.log(LogTag.HANDLERS, pageSummary);
+                    sb.append(pageSummary.article).append(" [").append(pageSummary.timeInPage/1000).append("s] ->  \n");
+                sb.append("[--END--]");
+                finishDialog.setMessage(sb.toString());
+                finishDialog.setPositiveButton(R.string.game_dialog_new_game,(d,v)->finish());
+                finishDialog.setOnDismissListener(v->finish());
+                game.pause();
+                finishDialog.show();
             }
 
             @Override
@@ -134,6 +146,10 @@ public class GameActivity extends AppCompatActivity {
             return false;
         });
 
+        binding.gameToolbarId.getMenu().findItem(R.id.game_menu_pause).setOnMenuItemClickListener(item->{
+            openMenuDialog();
+            return false;
+        });
 
         BadgeUtils.attachBadgeDrawable(goBackBadge, binding.gameToolbarId, R.id.game_menu_go_back_id);
         BadgeUtils.attachBadgeDrawable(showLinksOnlyBadge, binding.gameToolbarId, R.id.game_menu_show_links_only_id);
@@ -152,12 +168,12 @@ public class GameActivity extends AppCompatActivity {
     private void loopTimer() {
         timeHandler.postDelayed(() -> {
             long limit;
-            if (gameConfig.getTimeLimit() != Game.UNLIMITED) {
-                limit = gameConfig.getTimeLimit() - game.getTimeElapsedMillis();
+            if (gameConfig.getTimeLimitSeconds() != Game.UNLIMITED) {
+                limit = gameConfig.getTimeLimitSeconds() - game.getTimeElapsedSeconds();
                 if (limit <= 0) game.failed();
                 else loopTimer();
             } else {
-                limit = game.getTimeElapsedMillis();
+                limit = game.getTimeElapsedSeconds();
                 loopTimer();
             }
             binding.gameToolbarId.setTitle(timeToString(limit) + " " + jumpsToString());
@@ -170,15 +186,37 @@ public class GameActivity extends AppCompatActivity {
         else return game.getJump() + "/" + gameConfig.getNumOfJumps();
     }
 
-    private String timeToString(long milliTime) {
-        long hours = TimeUnit.MILLISECONDS.toHours(milliTime);
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(milliTime) % 60;
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(milliTime) % 60;
+    private String timeToString(long secondsTime) {
+        long hours = TimeUnit.SECONDS.toHours(secondsTime);
+        long minutes = TimeUnit.SECONDS.toMinutes(secondsTime) % 60;
+        long seconds = TimeUnit.SECONDS.toSeconds(secondsTime) % 60;
         String hoursString = hours > 0 ? (hours < 10 ? "0" + hours : "" + hours) + ":" : "";
         String minutesString = (minutes < 10 ? "0" + minutes : "" + minutes) + ":";
         String secondsString = seconds < 10 ? "0" + seconds : "" + seconds;
         return hoursString + minutesString + secondsString;
     }
 
+    @Override
+    public void onBackPressed() {
+        openMenuDialog();
+    }
+
+    private void openMenuDialog(){
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_pause_menu,null);
+        DialogPauseMenuBinding binding = DataBindingUtil.bind(dialogView);
+        Objects.requireNonNull(binding).setEndArticleString(gameConfig.getEndArticle());
+        dialogBuilder.setView(dialogView);
+        Objects.requireNonNull(binding).setExitButtonModel(new IconButtonModel(this,R.drawable.ic_baseline_close_24, v->{
+            finish();
+            startActivity(new Intent(this,MainActivity.class));
+        }));
+        binding.setRestartButtonModel(new IconButtonModel(this,R.drawable.ic_baseline_refresh_24,v->{
+            finish();
+        }));
+        game.pause();
+        dialogBuilder.setOnDismissListener(v->game.resume());
+        dialogBuilder.show();
+    }
 
 }

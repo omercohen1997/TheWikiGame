@@ -22,8 +22,8 @@
         app:showAsAction="always"
         />
     <item
-        android:id="@+id/game_menu_exit"
-        android:title="@string/game_exit"
+        android:id="@+id/game_menu_pause"
+        android:title="@string/game_pause"
         app:showAsAction="never"/>
 
 </menu>
