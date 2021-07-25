@@ -61,7 +61,6 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
 
-        //Initializers.
         timeHandler = new Handler();
 
         goBackBadge = BadgeDrawable.create(this);

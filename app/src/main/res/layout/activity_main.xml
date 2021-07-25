@@ -37,12 +37,14 @@
                 app:icon="@drawable/ic_baseline_videogame_asset_24"
                 app:iconGravity="textStart" />
 
+<!--            TODO: SET VISIBILITY TOVISIBLEE-->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/main_button_records_id"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_button_records"
+                android:visibility="gone"
                 app:icon="@drawable/ic_baseline_bar_chart_24"
                 app:iconGravity="textStart" />
 
@@ -54,6 +56,7 @@
                 android:text="@string/text_settings"
                 app:icon="@drawable/ic_baseline_settings_24"
                 app:iconGravity="textStart" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/main_button_about_id"

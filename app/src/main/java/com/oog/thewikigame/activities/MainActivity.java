@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         settingsActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            if (result.getResultCode() == ActivityResultUtil.RESULT_UPDATE){
+            if (result.getResultCode() == ActivityResultUtil.RESULT_UPDATE) {
                 if (!localeCode.equals(LocaleHandler.getSavedLocale(this))) recreate();
             }
         });
@@ -43,14 +43,17 @@ public class MainActivity extends AppCompatActivity {
         binding.mainButtonRecordsId.setOnClickListener(v ->
                 startActivity(new Intent(this, GameRecordsActivity.class)));
 
-        binding.mainButtonSettingsId.setOnClickListener(v ->{
-                Intent settingsActivityIntent = new Intent(this,SettingsActivity.class);
-                settingsActivityIntent.putExtra("LocaleCode",localeCode);
-                settingsActivityResultLauncher.launch(settingsActivityIntent);
-                });
+        binding.mainButtonSettingsId.setOnClickListener(v -> {
+            Intent settingsActivityIntent = new Intent(this, SettingsActivity.class);
+            settingsActivityIntent.putExtra("LocaleCode", localeCode);
+            settingsActivityResultLauncher.launch(settingsActivityIntent);
+        });
 
         binding.mainButtonAboutId.setOnClickListener(v ->
                 startActivity(new Intent(this, AboutActivity.class)));
 
+        //TODO: Implement records.
+        binding.mainButtonRecordsId.setOnClickListener(v ->
+                startActivity(new Intent(this, GameRecordsActivity.class)));
     }
 }

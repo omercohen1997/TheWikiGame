@@ -117,5 +117,7 @@
     <string name="about_text_guy_tsitsiashvili">Guy Tsitsiashvili</string>
     <string name="about_text_omer_cohen">Omer Cohen</string>
     <string name="about_text_version">Version</string>
-
+    <string name="author_expandable_email">Email</string>
+    <string name="author_expandable_linkedin">LinkedIn</string>
+    <string name="game_config_text_configuration">Configuration</string>
 </resources>

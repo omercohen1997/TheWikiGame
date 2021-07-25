@@ -13,57 +13,20 @@ import android.widget.TextView;
 
 import com.oog.thewikigame.R;
 import com.oog.thewikigame.databinding.ActivityAboutBinding;
+import com.oog.thewikigame.models.AuthorModel;
 
 public class AboutActivity extends AppCompatActivity {
-
-    LinearLayout expandableOmerCohen, expandableOmerGez, expandableGuy;
-    TextView textViewOmerCohen, textViewOmerGez, textViewGuy;
-    CardView cardViewOmerCohen, cardViewOmerGez, cardViewGuy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityAboutBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_about);
-        binding.omerGez.setOnClickListener((v)->{
-            if (expandableOmerGez.getVisibility() == View.GONE){
-                TransitionManager.beginDelayedTransition(cardViewOmerGez, new AutoTransition());
-                expandableOmerGez.setVisibility(View.VISIBLE);
-            }
-            else{
-                TransitionManager.beginDelayedTransition(cardViewOmerGez, new AutoTransition());
-                expandableOmerGez.setVisibility(View.GONE);
-            }
-        });
-        expandableOmerGez = findViewById(R.id.expandable_view_for_gez);
-        textViewOmerGez = findViewById(R.id.omerGez);
-        cardViewOmerGez = findViewById(R.id.cardview_expandable_for_gez);
 
-        binding.guy.setOnClickListener((v)->{
-            if (expandableGuy.getVisibility() == View.GONE){
-                TransitionManager.beginDelayedTransition(cardViewGuy, new AutoTransition());
-                expandableGuy.setVisibility(View.VISIBLE);
-            }
-            else{
-                TransitionManager.beginDelayedTransition(cardViewGuy, new AutoTransition());
-                expandableGuy.setVisibility(View.GONE);
-            }
-        });
-        expandableGuy = findViewById(R.id.expandable_view_for_guy);
-        textViewGuy = findViewById(R.id.guy);
-        cardViewGuy = findViewById(R.id.cardview_expandable_for_guy);
 
-        binding.omerCohen.setOnClickListener((v)->{
-            if (expandableOmerCohen.getVisibility() == View.GONE){
-                TransitionManager.beginDelayedTransition(cardViewOmerCohen, new AutoTransition());
-                expandableOmerCohen.setVisibility(View.VISIBLE);
-            }
-            else{
-                TransitionManager.beginDelayedTransition(cardViewOmerCohen, new AutoTransition());
-                expandableOmerCohen.setVisibility(View.GONE);
-            }
-        });
-        expandableOmerCohen = findViewById(R.id.expandable_view_for_cohen);
-        textViewOmerCohen = findViewById(R.id.omerCohen);
-        cardViewOmerCohen = findViewById(R.id.cardview_expandable_for_cohen);
+        binding.aboutToolbarId.setNavigationOnClickListener(v -> finish());
+
+        binding.setAuthor1Model(new AuthorModel("Omer Gez", "omergez72@gmail.com", "https://www.linkedin.com/in/omer-gez-004b931b0/"));
+        binding.setAuthor2Model(new AuthorModel("Guy Tsitsiashvili", "guygool4@gmail.com", "https://www.linkedin.com/in/guygool5/"));
+        binding.setAuthor3Model(new AuthorModel("Omer Cohen", "omerc1997@gmail.com", "https://www.linkedin.com/in/omer-cohen-400583201/"));
     }
 }

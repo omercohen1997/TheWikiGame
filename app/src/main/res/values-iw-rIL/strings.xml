@@ -73,5 +73,8 @@
     <string name="about_text_authors">יוצרים</string>
     <string name="about_text_detailed_description">משחק הוויקי הוא בהשראת \"אתגר הוויקי\" הידוע, בו ניתן לשחק ולהעשיר את הידע שלך בפלטפורמת ויקיפדיה. רעיון המשחק הוא משחק אסוציאציה שנותן מאמר התחלתי, ובאמצעות הקישורים הזמינים המפוזרים במאמר, אפשר לנווט למאמרים אחרים. המטרה היא להגיע למאמר הסיום שיועד בעזרת העזרות והנסיגות שנקבעו. אתגר/י את עצמך ואת חבריך ולמד/י משהו חדש כל יום!</string>
     <string name="about_text_description_title">תיאור משחק</string>
+    <string name="author_expandable_email">אימייל</string>
+    <string name="author_expandable_linkedin">לינקדאין</string>
+    <string name="game_config_text_configuration">העדפות</string>
 
 </resources>

@@ -32,29 +32,6 @@ abstract public class WebViewHandler {
      */
     abstract public void onLoadedArticle(String article);
 
-    /**
-     * This method returns the string reference for each gameLanguage
-     *
-     * @param lang the gameLanguage to get
-     * @return a string value for the given gameLanguage.
-     */
-    private static String getLanguage(GameLanguage lang) {
-        switch (lang) {
-            case HEBREW:
-                return "he";
-            case FRENCH:
-                return "fr";
-            case ARABIC:
-                return "ar";
-            case SPANISH:
-                return "sp";
-            case RUSSIAN:
-                return "ru";
-            case ENGLISH:
-            default:
-                return "en";
-        }
-    }
 
     //The WebView this class handles
     private final WebView webView;
@@ -156,7 +133,7 @@ abstract public class WebViewHandler {
     public static @NotNull String constructURL(String article, GameLanguage lang) {
         if (article == null) article = "";
         return String.format("https://%s.%s/%s/%s",
-                getLanguage(lang),
+                lang.code,
                 WIKI_BASE_URL,
                 WIKI_BASE_ARTICLE_ENDPOINT,
                 article);

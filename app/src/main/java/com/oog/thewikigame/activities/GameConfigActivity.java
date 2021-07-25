@@ -16,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.Observable;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.oog.thewikigame.BR;
 import com.oog.thewikigame.R;
 import com.oog.thewikigame.databinding.ActivityGameConfigBinding;
@@ -27,22 +25,11 @@ import com.oog.thewikigame.handlers.GameLanguage;
 import com.oog.thewikigame.models.IconButtonModel;
 import com.oog.thewikigame.models.TwoLinePopupModel;
 import com.oog.thewikigame.models.TwoLineSwitchTextFieldModel;
-import com.oog.thewikigame.utilities.LogTag;
 import com.oog.thewikigame.utilities.Logger;
 import com.oog.thewikigame.utilities.WikiApiManager;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 public class GameConfigActivity extends AppCompatActivity {
 
@@ -104,9 +91,9 @@ public class GameConfigActivity extends AppCompatActivity {
         binding.gameConfigLayoutExpandableId.setVisibility(View.GONE);
         View.OnClickListener expandConfiguration = v -> {
             ObjectAnimator anim = ObjectAnimator.ofFloat(binding.gameConfigIconButtonExpandId, "rotation",
-                    isCardExpanded() ? 0 : 180,
-                    isCardExpanded() ? 180 : 360);
-            anim.setDuration(500);
+                    isCardExpanded() ? 180 : 360,
+                    isCardExpanded() ? 0 : 180);
+            anim.setDuration(350);
             anim.start();
             TransitionManager.beginDelayedTransition(binding.gameConfigLayoutExpandableId, new AutoTransition());
             binding.gameConfigLayoutExpandableId.setVisibility(isCardExpanded() ? View.GONE : View.VISIBLE);

@@ -69,11 +69,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/game_config_toolbar_id"
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
@@ -81,16 +76,6 @@
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:title="@string/text_game_configuration" />
-
-                <ir.beigirad.zigzagview.ZigzagView
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    app:zigzagHeight="8dp"
-                    app:zigzagSides="top">
-
-                </ir.beigirad.zigzagview.ZigzagView>
-
-            </LinearLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -216,14 +201,14 @@
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_margin="8dp"
-                                android:contentDescription="Configuration"
+                                android:contentDescription="@string/game_config_text_configuration"
                                 android:src="@drawable/ic_baseline_tune_24" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Configuration"
+                                android:text="@string/game_config_text_configuration"
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
                             <FrameLayout

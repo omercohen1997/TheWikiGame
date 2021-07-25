@@ -15,4 +15,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="danger">@color/design_default_color_error</color>
     <color name="dangerRipple">#80B00020</color>
+    <color name="transparent">#00000000</color>
 </resources>
