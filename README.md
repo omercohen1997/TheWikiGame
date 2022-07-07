@@ -12,5 +12,5 @@ The app offers the user to choose the game mode, from using helps if he wants to
 The app appeals to the general public from children to adults when in order to be successful they will be required to deepen their knowledge on a particular topic, to think about connections between topics and terms whose connection is not necessarily intuitive.
 
 ## More details:
-For more details about the application you can download our presentaion file above.
+For more details about the application you can download our presentaion file above and you can download the apk above and try it on your android device!
 
