@@ -10,3 +10,7 @@ The player gets a starting value and a target value. The goal of the player is t
 The app offers the user to choose the game mode, from using helps if he wants to the game time limit. Among the aids there is an option to hide the text except for links to articles, text search and more.
 
 The app appeals to the general public from children to adults when in order to be successful they will be required to deepen their knowledge on a particular topic, to think about connections between topics and terms whose connection is not necessarily intuitive.
+
+## More details:
+For more details about the application you can download our presentaion file above.
+
